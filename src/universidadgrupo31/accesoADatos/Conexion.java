@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion{
     private static final String url ="jdbc:mariabd://localhost/";
-    private static final String BD = "universidad";
+    private static final String BD = "universidadulp";
     private static final String usuario = "root";    
     private static final String password = "";       
     
