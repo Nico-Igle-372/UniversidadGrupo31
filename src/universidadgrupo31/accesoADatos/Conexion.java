@@ -6,20 +6,25 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion{
-    private static  String URL ="jdbc:mariabd://localhost/universidadulp";
-    private static  String BD = "universidadulp";
-    private static  String USUARIO = "root";    
-    private static  String PASSWORD = "";       
+    private static String url;
+    private static String BD;
+    private static String usuario;    
+    private static String password;       
     
     private static Connection connexion = null;  
-    
-    private Conexion(){ }
+
+    public Conexion(String url, String bd, String usu, String pass) {
+        this.url = url;
+        BD = bd;
+        usuario = usu;
+        password = pass;
+    }
       
     public static Connection getConexion(){
         if (connexion == null) { 
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
-                connexion = DriverManager.getConnection("jdbc:mariabd://localhost/universidadulp", "root", "");
+                connexion = DriverManager.getConnection(url+BD, usuario, password);
             }catch(ClassNotFoundException ex){ 
                 JOptionPane.showMessageDialog(null, "Error al cargar el Driver  \n" + ex);
             }catch (SQLException ex) {
