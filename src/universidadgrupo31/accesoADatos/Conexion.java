@@ -3,25 +3,23 @@ package universidadgrupo31.accesoADatos;
 import java.sql.Connection;
 import java.sql.DriverManager;  // 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Conexion{
-    private static final String url ="jdbc:mariabd://localhost/";
-    private static final String BD = "universidadulp";
-    private static final String usuario = "root";    
-    private static final String password = "";       
+    private static  String URL ="jdbc:mariabd://localhost/universidadulp";
+    private static  String BD = "universidadulp";
+    private static  String USUARIO = "root";    
+    private static  String PASSWORD = "";       
     
     private static Connection connexion = null;  
     
-    public Conexion(){ }
+    private Conexion(){ }
       
     public static Connection getConexion(){
         if (connexion == null) { 
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
-                connexion = DriverManager.getConnection(url, usuario, password);
+                connexion = DriverManager.getConnection("jdbc:mariabd://localhost/universidadulp", "root", "");
             }catch(ClassNotFoundException ex){ 
                 JOptionPane.showMessageDialog(null, "Error al cargar el Driver  \n" + ex);
             }catch (SQLException ex) {
