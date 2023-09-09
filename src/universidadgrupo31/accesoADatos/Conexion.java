@@ -14,10 +14,10 @@ public class Conexion{
     private static Connection connexion = null;  
 
     public Conexion(String url, String bd, String usu, String pass) {
-        this.url = url;
-        BD = bd;
-        usuario = usu;
-        password = pass;
+        Conexion.url = url;
+        Conexion.BD = bd;
+        Conexion.usuario = usu;
+        Conexion.password = pass;
     }
       
     public static Connection getConexion(){
