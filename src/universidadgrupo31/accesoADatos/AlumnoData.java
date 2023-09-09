@@ -126,10 +126,10 @@ public class AlumnoData {
     
      public void modificarAlumno(Alumno alumno){
        String sql="UPDATE `alumno` SET `dni`=?,`apellido`=?,`nombre`=?,"
-               + "`fechaNacimiento`=?,`estado`=? WHERE idAlumno=?";
+               + "`fechaNacimiento`=?,`estado`=? WHERE idAlumno=4";
         
         try {
-            PreparedStatement ps=conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps=conn.prepareStatement(sql);
             ps.setInt(6,alumno.getIdAlumno());
             ps.setInt(1,alumno.getDni());
             ps.setString(2,alumno.getApellido());
@@ -137,15 +137,14 @@ public class AlumnoData {
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setBoolean(5,alumno.isEstado());
             
-            ps.executeUpdate();
+             int rs =ps.executeUpdate();
+             if(rs==1){
+                 JOptionPane.showMessageDialog(null,"Se modifico el alumno");
+             }else{
+                 JOptionPane.showMessageDialog(null,"No se modifico el alumno");
+             }
             
-            ResultSet rs=ps.getGeneratedKeys();
-            if(rs.next()){
-                alumno.setIdAlumno(rs.getInt(1));
-            }else{
-                JOptionPane.showMessageDialog(null,"No se puede obtener id");
-                ps.close();
-            }
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
