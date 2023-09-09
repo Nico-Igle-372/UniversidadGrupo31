@@ -130,11 +130,13 @@ public class AlumnoData {
         
         try {
             PreparedStatement ps=conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(6,alumno.getIdAlumno());
             ps.setInt(1,alumno.getDni());
             ps.setString(2,alumno.getApellido());
             ps.setString(3,alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setBoolean(5,alumno.isEstado());
+            
             ps.executeUpdate();
             
             ResultSet rs=ps.getGeneratedKeys();
@@ -149,5 +151,27 @@ public class AlumnoData {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
+     
+    public void eliminarAlumno(int id){
+       String upd="UPDATE alumno SET estado=0 WHERE idAlumno=?";
+       PreparedStatement ps;
+        try {
+            
+            ps = conn.prepareStatement(upd);
+            ps.setInt(1, id);
+            int registro= ps.executeUpdate();
+            if(registro==0){
+            JOptionPane.showMessageDialog(null, "No se encontro el alumno");
+            
+            }else{
+            JOptionPane.showMessageDialog(null, "Alumno eliminado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       
+   } 
+     
 }
