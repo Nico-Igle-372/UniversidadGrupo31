@@ -5,7 +5,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,8 +49,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materia");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         menuFormularioMateria.setText("Formulario de Materia");
+        menuFormularioMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFormularioMateriaActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuFormularioMateria);
 
         jMenuBar1.add(jMenu2);
@@ -58,6 +68,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Administracion");
 
         menuInscripciones.setText("Manejo de Inscripciones");
+        menuInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInscripcionesActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuInscripciones);
 
         menuNotas.setText("Manipulacion de notas");
@@ -97,19 +112,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotasActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        ActualizadorNotas cargaNotas = new ActualizadorNotas();
+        cargaNotas.setVisible(true);
+        cargaNotas.setClosable(true);
+        escritorio.add(cargaNotas);
+        escritorio.moveToFront(cargaNotas);
     }//GEN-LAST:event_menuNotasActionPerformed
 
     private void menuFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormularioAlumnoActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         GestionAlumnos formuAlumnos = new GestionAlumnos();
+        formuAlumnos.setClosable(true);
         formuAlumnos.setVisible(true);
         escritorio.add(formuAlumnos);
         escritorio.moveToFront(formuAlumnos);
     }//GEN-LAST:event_menuFormularioAlumnoActionPerformed
 
-    
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void menuFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormularioMateriaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        GestionMateria formuMateria = new GestionMateria();
+        formuMateria.setVisible(true);
+        escritorio.add(formuMateria);
+        escritorio.moveToFront(formuMateria);
+    }//GEN-LAST:event_menuFormularioMateriaActionPerformed
+
+    private void menuInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInscripcionesActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        GestionInscripcion formuInscripcion = new GestionInscripcion();
+        formuInscripcion.setVisible(true);
+        formuInscripcion.setClosable(true);
+        escritorio.add(formuInscripcion);
+        escritorio.moveToFront(formuInscripcion);
+    }//GEN-LAST:event_menuInscripcionesActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
