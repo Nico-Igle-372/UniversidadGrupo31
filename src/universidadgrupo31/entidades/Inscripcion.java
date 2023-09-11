@@ -2,16 +2,12 @@
 
 */
 package universidadgrupo31.entidades;
-
 public class Inscripcion {
     
     private int idInscripcion;
     private Alumno alumno;
     private Materia materia;
     private double nota;
-
-    public Inscripcion() {
-    }
 
     public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota) {
         this.idInscripcion = idInscripcion;
@@ -26,8 +22,7 @@ public class Inscripcion {
         this.nota = nota;
     }
 
-    public Inscripcion(double nota) {
-        this.nota = nota;
+    public Inscripcion() {
     }
 
     public int getIdInscripcion() {
@@ -61,6 +56,9 @@ public class Inscripcion {
     public void setNota(double nota) {
         this.nota = nota;
     }
+    
+    
+    
     
     
 }
