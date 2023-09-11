@@ -22,19 +22,23 @@ public class InscripcionData {
     private AlumnoData aluData;
     private MateriaData matData; 
 
-    public InscripcionData() {
-        con= Conexion.getConexion();
+    public InscripcionData(Connection con, AlumnoData aluData, MateriaData matData) {
+        this.con = Conexion.getConexion();;
+        this.aluData = aluData;
+        this.matData = matData;
     }
- 
+
     public void guardarInscripcion(Inscripcion insc){
          
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria)"
                  
-         +"VALUES (?,?,?,?)";
+         +"VALUES (?,?,?)";
         
         try {
-            PreparedStatement ps  = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, insc. );
+            
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(2, insc.getNota());
+            ps.setInt(3, insc.g)
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
