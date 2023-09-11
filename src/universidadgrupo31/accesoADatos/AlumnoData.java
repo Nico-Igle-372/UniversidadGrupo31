@@ -51,7 +51,7 @@ public class AlumnoData {
     
     public Alumno buscarAlumno(int id){
         Alumno alu=null;
-        String sql= "SELECT * FROM alumno WHERE idAlumno=?";
+        String sql= "SELECT * FROM alumno WHERE idAlumno=? AND estado= 1";
             PreparedStatement ps;
                 try{
                     ps=conn.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class AlumnoData {
     
       public Alumno buscarAlumnoPorDni(int dni){
         Alumno alu=null;
-        String sql= "SELECT * FROM alumno WHERE dni=?";
+        String sql= "SELECT * FROM alumno WHERE dni=? AND estado= 1";
             PreparedStatement ps;
                 try{
                     ps=conn.prepareStatement(sql);
@@ -101,7 +101,7 @@ public class AlumnoData {
     
      public List<Alumno> listarAlumnos(){
         List<Alumno> alumnos=new ArrayList<>();
-        String sql= "SELECT * FROM alumno";
+        String sql= "SELECT * FROM alumno WHERE estado= 1";
             PreparedStatement ps;
                 try{
                     ps=conn.prepareStatement(sql);
