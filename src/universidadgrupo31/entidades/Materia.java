@@ -4,7 +4,6 @@
 package universidadgrupo31.entidades;
 public class Materia {
     
-    
     private int idMateria;
     private String nombre;
     private int anioMateria;
@@ -19,8 +18,6 @@ public class Materia {
         this.anioMateria = anioMateria;
         this.estado = estado;
     }
-    
-    
 
     public Materia(String nombre, int anioMateria, boolean estado) {
         this.nombre = nombre;
@@ -62,9 +59,8 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "nombre=" + nombre + ", anioMateria=" + anioMateria + '}';
+        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anioMateria=" + anioMateria + ", estado=" + estado + '}';
     }
-    
     
     
 }
