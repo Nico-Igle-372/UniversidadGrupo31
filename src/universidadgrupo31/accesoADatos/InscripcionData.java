@@ -101,7 +101,7 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasCursadas(int id) {
 
-        List<Materia> materiasCursadas = new ArrayList<Materia>();
+        List<Materia> materiasCursadas = new ArrayList<>();
 
         try {
             String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion"
