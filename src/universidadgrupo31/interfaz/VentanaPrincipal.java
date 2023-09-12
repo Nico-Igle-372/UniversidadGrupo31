@@ -1,9 +1,13 @@
 package universidadgrupo31.interfaz;
 
+import java.sql.Connection;
+import universidadgrupo31.accesoADatos.Conexion;
+
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
         initComponents();
+        conectar();
     }
 
     @SuppressWarnings("unchecked")
@@ -201,5 +205,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuInscripciones;
     private javax.swing.JMenuItem menuNotas;
     // End of variables declaration//GEN-END:variables
-
+    
+    public void conectar(){
+        Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
+        Connection conn = Conexion.getConexion();
+    }
 }
