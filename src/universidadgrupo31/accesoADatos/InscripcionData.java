@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 import universidadgrupo31.entidades.Alumno;
@@ -102,13 +100,13 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasCursadas(int id) {
 
         List<Materia> materiasCursadas = new ArrayList<>();
-
+        PreparedStatement ps = null;
         try {
             String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion"
                     + "materia WHERE inscripcion.idMateria = materia.idMateria\n"
-                    + "AND inscripcion.idAlumno= ?";
+                    + "AND inscripcion.idAlumno= ? AND materia.estado = true";
 
-            PreparedStatement ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Materia materia;
@@ -119,12 +117,12 @@ public class InscripcionData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("año"));
+                materia.setEstado(rs.getBoolean("estado"));
                 materiasCursadas.add(materia);
-
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en buscar materias cursadas \n" + ex.getMessage());
         }
         return materiasCursadas;
 
@@ -132,20 +130,97 @@ public class InscripcionData {
 
     public List<Materia> obtenerMateriasNoCursadas(int id) {
         List<Materia> materiasNoCursadas = new ArrayList<>();
+        
+        String sql = "SELECT * FROM materia WHERE idMateria NOT IN"
+                + "(SELECT materia.idMateria FROM materia, inscripcion "
+                + "WHERE materia.idMateria = inscripcion.idMateria AND inscripcion.idAlumno = ?)";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {                
+                Materia mate = new Materia();
+                mate.setIdMateria(rs.getInt("idMateria"));
+                mate.setNombre(rs.getString("nombre"));
+                mate.setAnioMateria(rs.getInt("año"));
+                mate.setEstado(rs.getBoolean("estado"));
+                materiasNoCursadas.add(mate);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en buscar materias no cursadas \n" + ex.getMessage());
+        }
         return materiasNoCursadas;
-
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-
+        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+            
+            int registro = ps.executeUpdate();
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Desuscripto exitosamente");
+            }else{
+                 JOptionPane.showMessageDialog(null, "El alumno no estaba inscripto en esa materia");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en desuscripcion del alumno a la materia \n" + ex.getMessage());
+        }
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
-
+        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ? ";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(3, idMateria);
+            int registro = ps.executeUpdate();
+            
+            if (registro == 1) {
+                JOptionPane.showMessageDialog(null, "Se modifico la nota correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "El alumno no esta inscripto en esa materia");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en el cambio de nota" + ex.getMessage());
+        }
     }
 
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
         List<Alumno> alumnoPorMateria = new ArrayList<>();
+        
+        String sql = "SELECT a.idAlumno, dni, a.nombre, apellido "
+                + "FROM alumno AS a JOIN inscripcion AS i ON(a.idAlumno = i.idAlumno) "
+                + "JOIN materia AS m ON(i.idMateria = m.idMateria) "
+                + "WHERE i.idMateria = ? AND a.estado = true AND m.estado = true";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {                
+                Alumno alu = new Alumno();
+                alu.setIdAlumno(rs.getInt("idAlumno"));
+                alu.setDni(rs.getInt("dni"));
+                alu.setNombre(rs.getString("nombre"));
+                alu.setApellido(rs.getString("apellido"));
+                alu.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alu.setEstado(true);
+                alumnoPorMateria.add(alu);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la busqueda de alumnos \n" + ex.getMessage());
+        }
         return alumnoPorMateria;
     }
 }
