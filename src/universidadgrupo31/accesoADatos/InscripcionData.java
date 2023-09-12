@@ -131,7 +131,7 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasNoCursadas(int id) {
-
+        List<Materia> materiasNoCursadas = new ArrayList<>();
         return materiasNoCursadas;
 
     }
@@ -145,7 +145,7 @@ public class InscripcionData {
     }
 
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
-
+        List<Alumno> alumnoPorMateria = new ArrayList<>();
         return alumnoPorMateria;
     }
 }
