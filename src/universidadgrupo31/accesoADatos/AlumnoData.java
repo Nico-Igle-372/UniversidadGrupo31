@@ -57,7 +57,8 @@ public class AlumnoData {
                     ps=conn.prepareStatement(sql);
                     ps.setInt(1, id);
                     ResultSet rs=ps.executeQuery();
-                    while (rs.next()){
+                    if (rs.next()) {
+                        while (rs.next()){
                         alu=new Alumno();
                         alu.setIdAlumno(rs.getInt("idAlumno"));
                         alu.setDni(rs.getInt("dni"));
@@ -65,7 +66,9 @@ public class AlumnoData {
                         alu.setNombre(rs.getString("nombre"));
                         alu.setFechaNac((rs.getDate("fechaNacimiento")).toLocalDate());
                         alu.setEstado(rs.getBoolean("estado"));
-                    
+                    }
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No existe el alumno");
                     }
                     ps.close();
                 }catch(SQLException ex){
