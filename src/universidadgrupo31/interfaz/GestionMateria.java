@@ -198,7 +198,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             textoNombre.setText(mat.getNombre());
             textoYear.setText(String.valueOf(mat.getAnioMateria()));
             radioButtonEstado.setSelected(mat.isEstado());
-            vaciarDatos();
+            
             
         }
         
