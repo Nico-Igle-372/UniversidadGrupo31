@@ -237,19 +237,35 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private void botonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIDActionPerformed
       Alumno alu=new Alumno();
       alu=aluData.buscarAlumno(Integer.parseInt(textoID.getText()));
+        
       if(alu!=null){
       textoApellido.setText(alu.getApellido());
       textoDNI.setText(alu.getDni()+"");
       textoNombre.setText(alu.getNombre());
       jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
       radioButtonEstado.setSelected(alu.isEstado());
+      }else{
+      textoApellido.setText("");
+      textoDNI.setText("");
+      textoNombre.setText("");
+      jDateChooser2.setDate(null);
+      radioButtonEstado.setSelected(false);
       }
         
 
     }//GEN-LAST:event_botonBuscarIDActionPerformed
 
     private void botonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDniActionPerformed
-        // TODO add your handling code here:
+      Alumno alu=new Alumno();
+      alu=aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
+      if(alu!=null){
+      textoID.setText(alu.getIdAlumno()+"");
+      textoApellido.setText(alu.getApellido());
+      textoDNI.setText(alu.getDni()+"");
+      textoNombre.setText(alu.getNombre());
+      jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
+      radioButtonEstado.setSelected(alu.isEstado());
+      }  
     }//GEN-LAST:event_botonBuscarDniActionPerformed
 
 
