@@ -25,15 +25,20 @@ public class MateriaData {
     public void guardarMateria(Materia materia) {
 
         String sql = "INSERT INTO `materia`(`nombre`, `año`, `estado`) VALUES (?,?,?)";
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = coneccion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = coneccion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isEstado());
             ps.executeUpdate();
+            System.out.println("fase 1 bien");
             ResultSet rs = ps.getGeneratedKeys();
+            System.out.println("fase 2 bien");
             if (rs.next()) {
-                materia.setIdMateria(rs.getInt("idMateria"));
+                System.out.println("fase 3 bien");
+                materia.setIdMateria(1);
+                
                 JOptionPane.showMessageDialog(null, "Materia añadida con exito.");
             }
             ps.close();
