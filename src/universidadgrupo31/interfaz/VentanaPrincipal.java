@@ -205,9 +205,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuInscripciones;
     private javax.swing.JMenuItem menuNotas;
     // End of variables declaration//GEN-END:variables
-    
-    public void conectar(){
+
+    private void conectar(){
         Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
         Connection conn = Conexion.getConexion();
     }
+    
 }
