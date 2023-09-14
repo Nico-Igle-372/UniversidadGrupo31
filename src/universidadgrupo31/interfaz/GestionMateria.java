@@ -219,9 +219,10 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         
         Materia mat = new Materia();
+        mat.setIdMateria(Integer.parseInt(textoID.getText()));
         mat.setNombre(textoNombre.getText());
         mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
-        mat.setEstado(radioButtonEstado.isSelected());
+        mat.setEstado(true);
         matData.modificarMateria(mat);
         vaciarDatos();
     }//GEN-LAST:event_botonModificarActionPerformed
