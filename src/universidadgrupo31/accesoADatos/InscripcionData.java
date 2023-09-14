@@ -34,10 +34,12 @@ public class InscripcionData {
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
             ps.setInt(3, insc.getMateria().getIdMateria());
+            System.out.println("Inscripto fase 1");
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
+            System.out.println("Inscripto fase 2");
             if (rs.next()) {
-                insc.setIdInscripcion(rs.getInt("idInscripto"));
+                insc.setIdInscripcion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Inscripto satisfactoriamente");
             }
             ps.close();
@@ -127,7 +129,7 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasNoCursadas(int id) {
         List<Materia> materiasNoCursadas = new ArrayList<>();
         
-        String sql = "SELECT * FROM materia WHERE idMateria NOT IN"
+        String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria NOT IN"
                 + "(SELECT materia.idMateria FROM materia, inscripcion "
                 + "WHERE materia.idMateria = inscripcion.idMateria AND inscripcion.idAlumno = ?)";
         PreparedStatement ps = null;
@@ -140,7 +142,7 @@ public class InscripcionData {
                 mate.setIdMateria(rs.getInt("idMateria"));
                 mate.setNombre(rs.getString("nombre"));
                 mate.setAnioMateria(rs.getInt("año"));
-                mate.setEstado(rs.getBoolean("estado"));
+                mate.setEstado(true);
                 materiasNoCursadas.add(mate);
             }
             ps.close();

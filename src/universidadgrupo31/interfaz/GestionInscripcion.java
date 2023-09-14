@@ -5,12 +5,15 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.accesoADatos.InscripcionData;
+import universidadgrupo31.accesoADatos.MateriaData;
 import universidadgrupo31.entidades.Alumno;
+import universidadgrupo31.entidades.Inscripcion;
 import universidadgrupo31.entidades.Materia;
 
 public class GestionInscripcion extends javax.swing.JInternalFrame {
 
     AlumnoData aluData = new AlumnoData();
+    MateriaData mateData = new MateriaData();
     InscripcionData insData = new InscripcionData();
 
     private final DefaultTableModel modeloTabla = new DefaultTableModel() {
@@ -247,11 +250,28 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
-        // TODO add your handling code here:
+        Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
+
+        int idMate = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0);
+        String nomb = (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 1);
+        int anio = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 2);
+
+        Materia mate = new Materia(idMate, nomb, anio, true);
+
+        Inscripcion insc = new Inscripcion(alu, mate, 0);
+        insData.guardarInscripcion(insc);
+        
+        rbMateriasNoInsActionPerformed(evt);
     }//GEN-LAST:event_botonInscribirActionPerformed
 
     private void botonAnularInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularInsActionPerformed
-        // TODO add your handling code here:
+        Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
+        int idAlu = alu.getIdAlumno();
+        int idMate = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0);
+        
+        insData.borrarInscripcionMateriaAlumno(idMate, idMate);
+        
+        rbMateriasInsActionPerformed(evt);
     }//GEN-LAST:event_botonAnularInsActionPerformed
 
 
