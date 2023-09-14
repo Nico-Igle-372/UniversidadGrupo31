@@ -212,7 +212,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         mat.setEstado(radioButtonEstado.isSelected());
         
         matData.guardarMateria(mat);
-        vaciarDatos();
+        
         
     }//GEN-LAST:event_botonNuevoActionPerformed
 
