@@ -100,32 +100,28 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasCursadas(int id) {
 
         List<Materia> materiasCursadas = new ArrayList<>();
+        
+        String sql = "SELECT m.idMateria, m.nombre, año FROM materia as m "
+                    + "JOIN inscripcion as i ON (m.idMateria = i.idMateria) "
+                    + "WHERE i.idAlumno = ? AND m.estado = true";
         PreparedStatement ps = null;
         try {
-            String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion"
-                    + "materia WHERE inscripcion.idMateria = materia.idMateria\n"
-                    + "AND inscripcion.idAlumno= ? AND materia.estado = true";
-
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            Materia materia;
-
             while (rs.next()) {
-
-                materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
-                materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("año"));
-                materia.setEstado(rs.getBoolean("estado"));
-                materiasCursadas.add(materia);
+                Materia mate = new Materia();
+                mate.setIdMateria(rs.getInt("idMateria"));
+                mate.setNombre(rs.getString("nombre"));
+                mate.setAnioMateria(rs.getInt("año"));
+                mate.setEstado(true);
+                materiasCursadas.add(mate);
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en buscar materias cursadas \n" + ex.getMessage());
         }
         return materiasCursadas;
-
     }
 
     public List<Materia> obtenerMateriasNoCursadas(int id) {
