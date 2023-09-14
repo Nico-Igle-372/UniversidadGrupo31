@@ -25,15 +25,16 @@ public class MateriaData {
     public void guardarMateria(Materia materia) {
 
         String sql = "INSERT INTO `materia`(`nombre`, `año`, `estado`) VALUES (?,?,?)";
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = coneccion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps = coneccion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setIdMateria(1);
                 JOptionPane.showMessageDialog(null, "Materia añadida con exito.");
             }
             ps.close();
@@ -77,15 +78,14 @@ public class MateriaData {
 
     public void modificarMateria(Materia materia) {
 
-        String sql = "UPDATE `materia` SET `nombre`=?,`año`=?,`estado`=? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET nombre = ?, año = ? WHERE idMateria = ?";
         PreparedStatement ps = null;
 
         try {
             ps = coneccion.prepareStatement(sql);
-            ps.setInt(4, materia.getIdMateria());
+            ps.setInt(3, materia.getIdMateria());
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
-            ps.setBoolean(3, materia.isEstado());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
