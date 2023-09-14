@@ -269,7 +269,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         int idAlu = alu.getIdAlumno();
         int idMate = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0);
         
-        insData.borrarInscripcionMateriaAlumno(idMate, idMate);
+        insData.borrarInscripcionMateriaAlumno(idAlu, idMate);
         
         rbMateriasInsActionPerformed(evt);
     }//GEN-LAST:event_botonAnularInsActionPerformed
