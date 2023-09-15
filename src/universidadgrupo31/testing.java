@@ -18,6 +18,8 @@ public class testing {
     public static void main(String[] args) {
         Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
         Connection conn = Conexion.getConexion();
+  
+        
         
 //        String sql = "insert into alumno(dni, nombre, apellido, fechaNacimiento, estado) values"
 //                + "(30000001, 'jorge', 'pascual', '1900-03-15',true)";
@@ -29,14 +31,17 @@ public class testing {
 //            JOptionPane.showMessageDialog(null, ex);
 //        }
 //       
-        InscripcionData insData=new InscripcionData();
-        List<Alumno> lista=insData.obtenerAlumnoPorMateria(3);
-            for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
-                
-                Alumno alu = iterator.next();
-                System.out.println(alu);
-                
-            }
+//        InscripcionData insData=new InscripcionData();
+//        List<Alumno> lista=insData.obtenerAlumnoPorMateria(3);
+//            for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
+//                
+//                Alumno alu = iterator.next();
+//                System.out.println(alu);
+//                
+//            }
+//        
+
+            
         
     }
 }

@@ -1,10 +1,8 @@
 package universidadgrupo31.interfaz;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.entidades.Alumno;
@@ -259,9 +257,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Error al guardar");
         }
-       
-       
-       
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
