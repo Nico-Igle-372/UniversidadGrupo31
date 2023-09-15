@@ -92,6 +92,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Consultas");
 
         menuAlumnosXMateria.setText("Alumnos por Materia");
+        menuAlumnosXMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAlumnosXMateriaActionPerformed(evt);
+            }
+        });
         jMenu4.add(menuAlumnosXMateria);
 
         jMenuBar1.add(jMenu4);
@@ -157,6 +162,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(formuInscripcion);
         escritorio.moveToFront(formuInscripcion);
     }//GEN-LAST:event_menuInscripcionesActionPerformed
+
+    private void menuAlumnosXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlumnosXMateriaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        AlumnoPorMateria aluPorMate= new AlumnoPorMateria();
+        aluPorMate.setVisible(true);
+        aluPorMate.setClosable(true);
+        escritorio.add(aluPorMate);
+        escritorio.moveToFront(aluPorMate);
+    }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

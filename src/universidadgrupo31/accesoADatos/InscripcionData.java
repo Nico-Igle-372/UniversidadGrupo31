@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -193,7 +194,7 @@ public class InscripcionData {
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
         List<Alumno> alumnoPorMateria = new ArrayList<>();
         
-        String sql = "SELECT a.idAlumno, dni, a.nombre, apellido "
+        String sql = "SELECT a.idAlumno, dni, a.nombre, apellido, fechaNacimiento "
                 + "FROM alumno AS a JOIN inscripcion AS i ON(a.idAlumno = i.idAlumno) "
                 + "JOIN materia AS m ON(i.idMateria = m.idMateria) "
                 + "WHERE i.idMateria = ? AND a.estado = true AND m.estado = true";
@@ -208,7 +209,7 @@ public class InscripcionData {
                 alu.setDni(rs.getInt("dni"));
                 alu.setNombre(rs.getString("nombre"));
                 alu.setApellido(rs.getString("apellido"));
-                alu.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alu.setFechaNac((rs.getDate("fechaNacimiento")).toLocalDate());
                 alu.setEstado(true);
                 alumnoPorMateria.add(alu);
             }
