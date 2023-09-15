@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,8 +16,8 @@ import universidadgrupo31.entidades.Materia;
 public class InscripcionData {
 
     private Connection con;
-    private AlumnoData aluData;
-    private MateriaData matData;
+    private AlumnoData aluData = new AlumnoData();
+    private MateriaData matData = new MateriaData();
 
     public InscripcionData() {
         con = Conexion.getConexion();
@@ -58,12 +59,15 @@ public class InscripcionData {
         try {
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
+            
             while (rs.next()) {
                 Inscripcion inscri = new Inscripcion();
                 inscri.setIdInscripcion(rs.getInt("idInscripto"));
                 inscri.setNota(rs.getDouble("nota"));
-                inscri.getAlumno().setIdAlumno(rs.getInt("idAlumno"));
-                inscri.getMateria().setIdMateria(rs.getInt("idMateria"));
+                Alumno alu = aluData.buscarAlumno(rs.getInt("idAlumno"));
+                inscri.setAlumno(alu);
+                Materia mate = matData.buscarMateria(rs.getInt("idMateria"));
+                inscri.setMateria(mate);
                 inscripciones.add(inscri);
             }
             ps.close();
@@ -76,7 +80,6 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int id) {
 
         List<Inscripcion> inscripcionesPorAl = new ArrayList<>();
-
         String sql = "SELECT * FROM inscripcion where idAlumno = ?";
         PreparedStatement ps = null;
         try {
@@ -88,8 +91,10 @@ public class InscripcionData {
                 Inscripcion inscripto = new Inscripcion();
                 inscripto.setIdInscripcion(rs.getInt("idInscripto"));
                 inscripto.setNota(rs.getDouble("nota"));
-                inscripto.getAlumno().setIdAlumno(rs.getInt("idAlumno"));
-                inscripto.getMateria().setIdMateria(rs.getInt("idMateria"));
+                Alumno alu = aluData.buscarAlumno(rs.getInt("idAlumno"));
+                inscripto.setAlumno(alu);
+                Materia mate = matData.buscarMateria(rs.getInt("idMateria"));
+                inscripto.setMateria(mate);
                 inscripcionesPorAl.add(inscripto);
             }
             ps.close();
@@ -100,9 +105,7 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasCursadas(int id) {
-
         List<Materia> materiasCursadas = new ArrayList<>();
-        
         String sql = "SELECT m.idMateria, m.nombre, año FROM materia as m "
                     + "JOIN inscripcion as i ON (m.idMateria = i.idMateria) "
                     + "WHERE i.idAlumno = ? AND m.estado = true";
@@ -196,7 +199,7 @@ public class InscripcionData {
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
         List<Alumno> alumnoPorMateria = new ArrayList<>();
         
-        String sql = "SELECT a.idAlumno, dni, a.nombre, apellido "
+        String sql = "SELECT a.idAlumno, dni, a.nombre, apellido, fechaNacimiento "
                 + "FROM alumno AS a JOIN inscripcion AS i ON(a.idAlumno = i.idAlumno) "
                 + "JOIN materia AS m ON(i.idMateria = m.idMateria) "
                 + "WHERE i.idMateria = ? AND a.estado = true AND m.estado = true";
@@ -211,7 +214,7 @@ public class InscripcionData {
                 alu.setDni(rs.getInt("dni"));
                 alu.setNombre(rs.getString("nombre"));
                 alu.setApellido(rs.getString("apellido"));
-                alu.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alu.setFechaNac((rs.getDate("fechaNacimiento")).toLocalDate());
                 alu.setEstado(true);
                 alumnoPorMateria.add(alu);
             }
