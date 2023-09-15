@@ -1,5 +1,6 @@
 package universidadgrupo31.interfaz;
 
+import java.awt.HeadlessException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -243,8 +244,11 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-       Alumno alu=new Alumno();
-       alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+       Alumno alu=new Alumno(); 
+       
+       try{
+      
+       alu.setIdAlumno(Integer.parseInt(textoID.getText())); 
        alu.setDni(Integer.parseInt(textoDNI.getText()));
        alu.setApellido(textoApellido.getText());
        alu.setNombre(textoNombre.getText());
@@ -257,8 +261,16 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Alumno Guardado");
             
         }else{
-            JOptionPane.showMessageDialog(this, "Error al guardar");
+            JOptionPane.showMessageDialog(null, "Error al guardar");
         }
+       }catch(NumberFormatException ex){
+           JOptionPane.showMessageDialog(null,"Un dato ingresado no valido");
+           vaciarDatos();
+          
+       }    
+      
+       
+       
        
        
        
