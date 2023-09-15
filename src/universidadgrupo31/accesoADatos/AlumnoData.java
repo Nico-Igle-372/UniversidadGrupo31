@@ -52,10 +52,10 @@ public class AlumnoData {
 
     public Alumno buscarAlumno(int id) {
         Alumno alu = null;
-        String sql = "SELECT * FROM alumno WHERE idAlumno=? AND estado= 1";
+        String sql = "SELECT * FROM alumno WHERE idAlumno=?";
         PreparedStatement ps;
         try {
-            
+
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -68,9 +68,7 @@ public class AlumnoData {
                 alu.setNombre(rs.getString("nombre"));
                 alu.setFechaNac((rs.getDate("fechaNacimiento")).toLocalDate());
                 alu.setEstado(rs.getBoolean("estado"));
-                
             }
-
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -80,7 +78,7 @@ public class AlumnoData {
 
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alu = null;
-        String sql = "SELECT * FROM alumno WHERE dni=? AND estado= 1";
+        String sql = "SELECT * FROM alumno WHERE dni=?";
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(sql);
@@ -94,7 +92,6 @@ public class AlumnoData {
                 alu.setNombre(rs.getString("nombre"));
                 alu.setFechaNac((rs.getDate("fechaNacimiento")).toLocalDate());
                 alu.setEstado(rs.getBoolean("estado"));
-
             }
             ps.close();
         } catch (SQLException ex) {
@@ -169,9 +166,28 @@ public class AlumnoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en baja alumno \n" + ex.getMessage());
         }
 
     }
 
+    public void altaAlumno(int id) {
+        String upd = "UPDATE alumno SET estado=1 WHERE idAlumno=?";
+        PreparedStatement ps;
+        try {
+
+            ps = conn.prepareStatement(upd);
+            ps.setInt(1, id);
+            int registro = ps.executeUpdate();
+            if (registro == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontro el alumno");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Alumno eliminado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en alta alumno \n" + ex.getMessage());
+        }
+    }
 }

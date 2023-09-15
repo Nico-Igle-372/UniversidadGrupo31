@@ -58,16 +58,6 @@
                                   <Component id="radioButtonEstado" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="botonNuevo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="botonModificar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Component id="botonEliminar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -89,6 +79,18 @@
                                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                                   <Component id="botonBuscarID" min="-2" pref="98" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="botonNuevo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="botonModificar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="botonEliminar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="botonAlta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -116,12 +118,12 @@
                       </Group>
                       <Component id="botonBuscarID" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="textoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="textoYear" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,12 +133,13 @@
                       <Component id="jLabel5" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="radioButtonEstado" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botonNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
@@ -231,6 +234,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoID">
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAlta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dar de Alta"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAltaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

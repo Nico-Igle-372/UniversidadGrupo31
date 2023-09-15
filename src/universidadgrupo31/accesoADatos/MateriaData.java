@@ -48,7 +48,7 @@ public class MateriaData {
     public Materia buscarMateria(int idMateria) {
 
         Materia mat = null;
-        String sql = "SELECT nombre, año, estado FROM materia WHERE idMateria= ? AND estado=1 ";
+        String sql = "SELECT nombre, año, estado FROM materia WHERE idMateria= ?";
         PreparedStatement ps = null;
         try {
             ps = coneccion.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class MateriaData {
                 mat.setIdMateria(idMateria);
                 mat.setNombre(rs.getString("nombre"));
                 mat.setAnioMateria(rs.getInt("año"));
-                mat.setEstado(true);
+                mat.setEstado(rs.getBoolean("estado"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la materia");
@@ -150,4 +150,24 @@ public class MateriaData {
      return materias;   
     }
     
+    public void altaMateria (int idMateria) {
+
+        String sql = "UPDATE materia SET estado = 1 WHERE idMateria = ? ";
+        PreparedStatement ps = null;
+        try {
+            ps = coneccion.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se dio de alta la materia.");
+            } else {
+                JOptionPane.showMessageDialog(null, " No se encontro la materia.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Materia");
+        }
+
+   }
 }
