@@ -102,6 +102,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu6.setText("Salir");
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -172,6 +177,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(aluPorMate);
         escritorio.moveToFront(aluPorMate);
     }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+       System.exit(WIDTH);
+    }//GEN-LAST:event_jMenu6ActionPerformed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

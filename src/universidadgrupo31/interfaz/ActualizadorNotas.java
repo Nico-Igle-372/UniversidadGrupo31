@@ -62,6 +62,11 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaMaterias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tablaMateriasFocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaMaterias);
 
         cbAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -169,20 +174,35 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
         int idAlu = alu.getIdAlumno();
         int registro = 0;
-        for (int fila = 0; fila < tablaMaterias.getRowCount(); fila++) {
-            int idMate = (int) tablaMaterias.getValueAt(fila, 0);
-            String notaSt = tablaMaterias.getValueAt(fila, 2).toString();
-            double nota = Double.parseDouble(notaSt);
-            tablaMaterias.setValueAt(nota, fila, 2);
-            insData.actualizarNota(idAlu, idMate, nota);
-            registro++;
+        try {
+            for (int fila = 0; fila < tablaMaterias.getRowCount(); fila++) {
+                int idMate = (int) tablaMaterias.getValueAt(fila, 0);
+                String notaSt = tablaMaterias.getValueAt(fila, 2).toString();                
+                double nota = Double.parseDouble(notaSt);
+                if(nota>10 || nota<0){
+                  JOptionPane.showMessageDialog(null, "Ingrese valores del 0 al 10");
+                }else{
+                tablaMaterias.setValueAt(nota, fila, 2);
+                insData.actualizarNota(idAlu, idMate, nota);
+                registro++;
+                }
+                
+
+            }
+            if (registro > 0) {
+                JOptionPane.showMessageDialog(null, "Se modificaron las notas correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No hubo notas para actualizar");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese valores númericos");
         }
-        if (registro > 0) {
-            JOptionPane.showMessageDialog(null, "Se modificaron las notas correctamente");
-        } else {
-            JOptionPane.showMessageDialog(null, "No hubo notas para actualizar");
-        }
+
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void tablaMateriasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMateriasFocusLost
+      
+    }//GEN-LAST:event_tablaMateriasFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
