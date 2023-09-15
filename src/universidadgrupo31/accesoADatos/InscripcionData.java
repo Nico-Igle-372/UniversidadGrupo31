@@ -183,12 +183,7 @@ public class InscripcionData {
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             int registro = ps.executeUpdate();
-            
-            if (registro == 1) {
-                JOptionPane.showMessageDialog(null, "Se modifico la nota correctamente");
-            }else{
-                JOptionPane.showMessageDialog(null, "El alumno no esta inscripto en esa materia");
-            }
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en el cambio de nota" + ex.getMessage());
