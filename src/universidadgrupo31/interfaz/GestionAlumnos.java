@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.entidades.Alumno;
 
-
 public class GestionAlumnos extends javax.swing.JInternalFrame {
-    private static AlumnoData aluData=new AlumnoData();
+
+    private static AlumnoData aluData = new AlumnoData();
+
     public GestionAlumnos() {
         initComponents();
     }
@@ -239,99 +240,123 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-   
-       dispose();//cierra la pestaña
+
+        dispose();//cierra la pestaña
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-       Alumno alu=new Alumno(); 
-       
-       try{
-      
-       alu.setIdAlumno(Integer.parseInt(textoID.getText())); 
-       alu.setDni(Integer.parseInt(textoDNI.getText()));
-       alu.setApellido(textoApellido.getText());
-       alu.setNombre(textoNombre.getText());
-       LocalDate fecha=jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-       alu.setFechaNac(fecha);
-       alu.setEstado(radioButtonEstado.isSelected());
-        if (alu!=null) {
-            aluData.guardarAlumno(alu);
+        Alumno alu = new Alumno();
+
+        try {
+
+            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+            alu.setDni(Integer.parseInt(textoDNI.getText()));
+            alu.setApellido(textoApellido.getText());
+            alu.setNombre(textoNombre.getText());
+            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            alu.setFechaNac(fecha);
+            alu.setEstado(radioButtonEstado.isSelected());
+            if (alu != null) {
+                aluData.guardarAlumno(alu);
+                vaciarDatos();
+                JOptionPane.showMessageDialog(this, "Alumno Guardado");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar");
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
             vaciarDatos();
-            JOptionPane.showMessageDialog(this, "Alumno Guardado");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Error al guardar");
+
         }
-       }catch(NumberFormatException ex){
-           JOptionPane.showMessageDialog(null,"Un dato ingresado no valido");
-           vaciarDatos();
-          
-       }    
-      
-       
-       
-       
-       
-       
+
+
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-       Alumno alu=new Alumno();
-       alu.setIdAlumno(Integer.parseInt(textoID.getText()));
-       alu.setDni(Integer.parseInt(textoDNI.getText()));
-       alu.setApellido(textoApellido.getText());
-       alu.setNombre(textoNombre.getText());
-       LocalDate fecha=jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-       alu.setFechaNac(fecha);
-       alu.setEstado(radioButtonEstado.isSelected());
-       if (alu!=null) {
-            aluData.modificarAlumno(alu);
+        Alumno alu = new Alumno();
+        try {
+            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+            alu.setDni(Integer.parseInt(textoDNI.getText()));
+            alu.setApellido(textoApellido.getText());
+            alu.setNombre(textoNombre.getText());
+            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            alu.setFechaNac(fecha);
+            alu.setEstado(radioButtonEstado.isSelected());
+            if (alu != null) {
+                aluData.modificarAlumno(alu);
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
             vaciarDatos();
-       }    
-            
+
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-       aluData.eliminarAlumno(Integer.parseInt(textoID.getText()));
-       vaciarDatos();
+        try {
+            aluData.eliminarAlumno(Integer.parseInt(textoID.getText()));
+            vaciarDatos();
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIDActionPerformed
-      Alumno alu=new Alumno();
-      alu=aluData.buscarAlumno(Integer.parseInt(textoID.getText()));
-        
-      if(alu!=null){
-      textoApellido.setText(alu.getApellido());
-      textoDNI.setText(alu.getDni()+"");
-      textoNombre.setText(alu.getNombre());
-      jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
-      radioButtonEstado.setSelected(alu.isEstado());
-      }else{
-          vaciarDatos();
-      }
-        
+        Alumno alu = new Alumno();
+
+        try {
+            alu = aluData.buscarAlumno(Integer.parseInt(textoID.getText()));
+            if (alu != null) {
+                textoApellido.setText(alu.getApellido());
+                textoDNI.setText(alu.getDni() + "");
+                textoNombre.setText(alu.getNombre());
+                jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
+                radioButtonEstado.setSelected(alu.isEstado());
+            } else {
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
 
     }//GEN-LAST:event_botonBuscarIDActionPerformed
 
     private void botonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDniActionPerformed
-      Alumno alu=new Alumno();
-      alu=aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
-      if(alu!=null){
-      textoID.setText(alu.getIdAlumno()+"");
-      textoApellido.setText(alu.getApellido());
-      textoDNI.setText(alu.getDni()+"");
-      textoNombre.setText(alu.getNombre());
-      jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
-      radioButtonEstado.setSelected(alu.isEstado());
-      }else{
-          vaciarDatos();
-      }  
+        Alumno alu = new Alumno();
+        try {
+            alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
+            if (alu != null) {
+                textoID.setText(alu.getIdAlumno() + "");
+                textoApellido.setText(alu.getApellido());
+                textoDNI.setText(alu.getDni() + "");
+                textoNombre.setText(alu.getNombre());
+                jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
+                radioButtonEstado.setSelected(alu.isEstado());
+            } else {
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonBuscarDniActionPerformed
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        aluData.altaAlumno(Integer.parseInt(textoID.getText()));
-        vaciarDatos();
+        try {
+            aluData.altaAlumno(Integer.parseInt(textoID.getText()));
+            vaciarDatos();
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonAltaActionPerformed
 
 
@@ -359,12 +384,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textoID;
     private javax.swing.JTextField textoNombre;
     // End of variables declaration//GEN-END:variables
-    public void vaciarDatos(){
-      textoID.setText("");
-      textoApellido.setText("");
-      textoDNI.setText("");
-      textoNombre.setText("");
-      jDateChooser2.setDate(null);
-      radioButtonEstado.setSelected(false);
+    public void vaciarDatos() {
+        textoID.setText("");
+        textoApellido.setText("");
+        textoDNI.setText("");
+        textoNombre.setText("");
+        jDateChooser2.setDate(null);
+        radioButtonEstado.setSelected(false);
     }
 }
