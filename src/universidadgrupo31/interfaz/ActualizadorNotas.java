@@ -2,6 +2,7 @@ package universidadgrupo31.interfaz;
 
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo31.accesoADatos.AlumnoData;
@@ -166,13 +167,21 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
-        int fila = tablaMaterias.getSelectedRow();
         int idAlu = alu.getIdAlumno();
-        int idMate = (int) tablaMaterias.getValueAt(fila, 0);
-        String notaSt = tablaMaterias.getValueAt(fila, 2).toString(); 
-        double nota = Double.parseDouble(notaSt);
-        tablaMaterias.setValueAt(nota, fila, 2);
-        insData.actualizarNota(idAlu, idMate, nota);
+        int registro = 0;
+        for (int fila = 0; fila < tablaMaterias.getRowCount(); fila++) {
+            int idMate = (int) tablaMaterias.getValueAt(fila, 0);
+            String notaSt = tablaMaterias.getValueAt(fila, 2).toString();
+            double nota = Double.parseDouble(notaSt);
+            tablaMaterias.setValueAt(nota, fila, 2);
+            insData.actualizarNota(idAlu, idMate, nota);
+            registro++;
+        }
+        if (registro > 0) {
+            JOptionPane.showMessageDialog(null, "Se modificaron las notas correctamente");
+        } else {
+            JOptionPane.showMessageDialog(null, "No hubo notas para actualizar");
+        }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
 

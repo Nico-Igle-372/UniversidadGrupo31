@@ -31,6 +31,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         botonSalir = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         textoID = new javax.swing.JTextField();
+        botonAlta = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -84,6 +85,13 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Codigo ID: ");
 
+        botonAlta.setText("Dar de Alta");
+        botonAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAltaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,15 +108,6 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                                 .addGap(93, 93, 93)
                                 .addComponent(radioButtonEstado)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonNuevo)
-                                .addGap(31, 31, 31)
-                                .addComponent(botonModificar)
-                                .addGap(28, 28, 28)
-                                .addComponent(botonEliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(botonSalir)
-                                .addGap(39, 39, 39))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -125,7 +124,18 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                                         .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(87, 87, 87)
                                 .addComponent(botonBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79))))))
+                                .addGap(79, 79, 79))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botonNuevo)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonAlta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonSalir)
+                                .addGap(26, 26, 26))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,11 +154,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                         .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7))
                     .addComponent(botonBuscarID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textoYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,12 +166,13 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(radioButtonEstado, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(43, 43, 43)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonNuevo)
                     .addComponent(botonEliminar)
                     .addComponent(botonModificar)
-                    .addComponent(botonSalir))
+                    .addComponent(botonSalir)
+                    .addComponent(botonAlta))
                 .addGap(59, 59, 59))
         );
 
@@ -230,6 +241,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
+        matData.altaMateria(Integer.parseInt(textoID.getText()));
+        vaciarDatos();
+    }//GEN-LAST:event_botonAltaActionPerformed
     
     public void vaciarDatos() {
         
@@ -239,6 +255,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         radioButtonEstado.setSelected(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAlta;
     private javax.swing.JButton botonBuscarID;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
