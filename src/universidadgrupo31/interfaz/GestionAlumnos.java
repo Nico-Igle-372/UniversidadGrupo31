@@ -1,5 +1,6 @@
 package universidadgrupo31.interfaz;
 
+import java.awt.HeadlessException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -9,9 +10,10 @@ import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.entidades.Alumno;
 
-
 public class GestionAlumnos extends javax.swing.JInternalFrame {
-    private static AlumnoData aluData=new AlumnoData();
+
+    private static AlumnoData aluData = new AlumnoData();
+
     public GestionAlumnos() {
         initComponents();
     }
@@ -62,7 +64,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
 
-        botonBuscarID.setText("Buscar");
+        botonBuscarID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
         botonBuscarID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarIDActionPerformed(evt);
@@ -99,7 +101,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Codigo ID: ");
 
-        botonBuscarDni.setText("Buscar");
+        botonBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
         botonBuscarDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarDniActionPerformed(evt);
@@ -134,11 +136,11 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textoDNI)
                                     .addComponent(textoID))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(botonBuscarID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonBuscarDni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(79, 79, 79))
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(botonBuscarID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonBuscarDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(103, 103, 103))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -181,46 +183,45 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
-                                .addComponent(radioButtonEstado))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonNuevo)
-                            .addComponent(botonEliminar)
-                            .addComponent(botonModificar)
-                            .addComponent(botonSalir)
-                            .addComponent(botonAlta))
-                        .addGap(59, 59, 59))
+                            .addComponent(jLabel7)))
+                    .addComponent(botonBuscarID))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonBuscarDni))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonBuscarID)
-                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonBuscarDni)
-                            .addComponent(textoDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(textoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(radioButtonEstado))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonNuevo)
+                    .addComponent(botonEliminar)
+                    .addComponent(botonModificar)
+                    .addComponent(botonSalir)
+                    .addComponent(botonAlta))
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,88 +239,123 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-   
-       dispose();//cierra la pestaña
+
+        dispose();//cierra la pestaña
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-       Alumno alu=new Alumno();
-       alu.setIdAlumno(Integer.parseInt(textoID.getText()));
-       alu.setDni(Integer.parseInt(textoDNI.getText()));
-       alu.setApellido(textoApellido.getText());
-       alu.setNombre(textoNombre.getText());
-       LocalDate fecha=jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-       alu.setFechaNac(fecha);
-       alu.setEstado(radioButtonEstado.isSelected());
-        if (alu!=null) {
-            aluData.guardarAlumno(alu);
+        Alumno alu = new Alumno();
+
+        try {
+
+            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+            alu.setDni(Integer.parseInt(textoDNI.getText()));
+            alu.setApellido(textoApellido.getText());
+            alu.setNombre(textoNombre.getText());
+            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            alu.setFechaNac(fecha);
+            alu.setEstado(radioButtonEstado.isSelected());
+            if (alu != null) {
+                aluData.guardarAlumno(alu);
+                vaciarDatos();
+                JOptionPane.showMessageDialog(this, "Alumno Guardado");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar");
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
             vaciarDatos();
-            JOptionPane.showMessageDialog(this, "Alumno Guardado");
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "Error al guardar");
+
         }
-       
-       
-       
+
+
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-       Alumno alu=new Alumno();
-       alu.setIdAlumno(Integer.parseInt(textoID.getText()));
-       alu.setDni(Integer.parseInt(textoDNI.getText()));
-       alu.setApellido(textoApellido.getText());
-       alu.setNombre(textoNombre.getText());
-       LocalDate fecha=jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-       alu.setFechaNac(fecha);
-       alu.setEstado(radioButtonEstado.isSelected());
-       if (alu!=null) {
-            aluData.modificarAlumno(alu);
+        Alumno alu = new Alumno();
+        try {
+            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+            alu.setDni(Integer.parseInt(textoDNI.getText()));
+            alu.setApellido(textoApellido.getText());
+            alu.setNombre(textoNombre.getText());
+            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            alu.setFechaNac(fecha);
+            alu.setEstado(radioButtonEstado.isSelected());
+            if (alu != null) {
+                aluData.modificarAlumno(alu);
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
             vaciarDatos();
-       }    
-            
+
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-       aluData.eliminarAlumno(Integer.parseInt(textoID.getText()));
-       vaciarDatos();
+        try {
+            aluData.eliminarAlumno(Integer.parseInt(textoID.getText()));
+            vaciarDatos();
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIDActionPerformed
-      Alumno alu=new Alumno();
-      alu=aluData.buscarAlumno(Integer.parseInt(textoID.getText()));
-        
-      if(alu!=null){
-      textoApellido.setText(alu.getApellido());
-      textoDNI.setText(alu.getDni()+"");
-      textoNombre.setText(alu.getNombre());
-      jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
-      radioButtonEstado.setSelected(alu.isEstado());
-      }else{
-          vaciarDatos();
-      }
-        
+        Alumno alu = new Alumno();
+
+        try {
+            alu = aluData.buscarAlumno(Integer.parseInt(textoID.getText()));
+            if (alu != null) {
+                textoApellido.setText(alu.getApellido());
+                textoDNI.setText(alu.getDni() + "");
+                textoNombre.setText(alu.getNombre());
+                jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
+                radioButtonEstado.setSelected(alu.isEstado());
+            } else {
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
 
     }//GEN-LAST:event_botonBuscarIDActionPerformed
 
     private void botonBuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDniActionPerformed
-      Alumno alu=new Alumno();
-      alu=aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
-      if(alu!=null){
-      textoID.setText(alu.getIdAlumno()+"");
-      textoApellido.setText(alu.getApellido());
-      textoDNI.setText(alu.getDni()+"");
-      textoNombre.setText(alu.getNombre());
-      jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
-      radioButtonEstado.setSelected(alu.isEstado());
-      }else{
-          vaciarDatos();
-      }  
+        Alumno alu = new Alumno();
+        try {
+            alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
+            if (alu != null) {
+                textoID.setText(alu.getIdAlumno() + "");
+                textoApellido.setText(alu.getApellido());
+                textoDNI.setText(alu.getDni() + "");
+                textoNombre.setText(alu.getNombre());
+                jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
+                radioButtonEstado.setSelected(alu.isEstado());
+            } else {
+                vaciarDatos();
+            }
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonBuscarDniActionPerformed
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        aluData.altaAlumno(Integer.parseInt(textoID.getText()));
-        vaciarDatos();
+        try {
+            aluData.altaAlumno(Integer.parseInt(textoID.getText()));
+            vaciarDatos();
+        } catch (NumberFormatException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            vaciarDatos();
+
+        }
     }//GEN-LAST:event_botonAltaActionPerformed
 
 
@@ -347,12 +383,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textoID;
     private javax.swing.JTextField textoNombre;
     // End of variables declaration//GEN-END:variables
-    public void vaciarDatos(){
-      textoID.setText("");
-      textoApellido.setText("");
-      textoDNI.setText("");
-      textoNombre.setText("");
-      jDateChooser2.setDate(null);
-      radioButtonEstado.setSelected(false);
+    public void vaciarDatos() {
+        textoID.setText("");
+        textoApellido.setText("");
+        textoDNI.setText("");
+        textoNombre.setText("");
+        jDateChooser2.setDate(null);
+        radioButtonEstado.setSelected(false);
     }
 }
