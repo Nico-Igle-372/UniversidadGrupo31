@@ -4,17 +4,10 @@
 package universidadgrupo31;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
-import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.accesoADatos.Conexion;
 import universidadgrupo31.accesoADatos.InscripcionData;
 import universidadgrupo31.accesoADatos.MateriaData;
-import universidadgrupo31.entidades.Alumno;
-import universidadgrupo31.entidades.Inscripcion;
 
 public class testing {
     public static void main(String[] args) {
@@ -44,7 +37,8 @@ public class testing {
 //            System.out.println(insc.getNota());
 //            System.out.println("----------------------------------------------");
 //        }
-        insData.actualizarNota(5, 5, 9);
+      //  insData.actualizarNota(5, 5, 9);
+        
         
     }
 }
