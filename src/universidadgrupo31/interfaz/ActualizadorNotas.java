@@ -2,6 +2,7 @@ package universidadgrupo31.interfaz;
 
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.accesoADatos.InscripcionData;
@@ -165,14 +166,13 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
+        int fila = tablaMaterias.getSelectedRow();
         int idAlu = alu.getIdAlumno();
-        for (int i = 0; i < tablaMaterias.getRowCount(); i++) {
-            int idMate = (int) modeloTabla.getValueAt(i, 0);
-            String notaSt = (String) modeloTabla.getValueAt(i, 2);  //problema aca
-            System.out.println(notaSt);
-            double nota = Double.parseDouble(notaSt);
-            insData.actualizarNota(idAlu, idMate, nota);
-        }
+        int idMate = (int) tablaMaterias.getValueAt(fila, 0);
+        String notaSt = tablaMaterias.getValueAt(fila, 2).toString(); 
+        double nota = Double.parseDouble(notaSt);
+        tablaMaterias.setValueAt(nota, fila, 2);
+        insData.actualizarNota(idAlu, idMate, nota);
     }//GEN-LAST:event_botonGuardarActionPerformed
 
 
