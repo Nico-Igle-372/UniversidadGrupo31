@@ -1,18 +1,29 @@
 package universidadgrupo31.interfaz;
 
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo31.accesoADatos.AlumnoData;
+import universidadgrupo31.accesoADatos.InscripcionData;
+import universidadgrupo31.entidades.Alumno;
+import universidadgrupo31.entidades.Inscripcion;
 
 public class ActualizadorNotas extends javax.swing.JInternalFrame {
 
+    AlumnoData aluData = new AlumnoData();
+    InscripcionData insData = new InscripcionData();
+
     private final DefaultTableModel modeloTabla = new DefaultTableModel() {
+        @Override
         public boolean isCellEditable(int fila, int columna) {
-            return false;
+            return columna == 2;
         }
     };
 
     public ActualizadorNotas() {
         initComponents();
         armarCabecera();
+        cargarCombo();
     }
 
     @SuppressWarnings("unchecked")
@@ -26,6 +37,8 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMaterias = new javax.swing.JTable();
         cbAlumnos = new javax.swing.JComboBox<>();
+        botonGuardar = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -55,6 +68,20 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
             }
         });
 
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
+
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -79,6 +106,12 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                         .addGap(161, 161, 161)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(botonGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSalir)
+                .addGap(45, 45, 45))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,8 +125,12 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(cbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardar)
+                    .addComponent(botonSalir))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,13 +148,38 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnosActionPerformed
-        cbAlumnos.getSelectedItem();
+        Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
+        int tamaño = tablaMaterias.getRowCount();
+        limpiarTabla(tamaño);
 
+        List<Inscripcion> listaIns = insData.obtenerInscripcionesPorAlumno(alu.getIdAlumno());
+        for (Iterator<Inscripcion> iterator = listaIns.iterator(); iterator.hasNext();) {
+            Inscripcion insc = iterator.next();
+            cargarDatosTabla(insc);
+        }
     }//GEN-LAST:event_cbAlumnosActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
+        int idAlu = alu.getIdAlumno();
+        for (int i = 0; i < tablaMaterias.getRowCount(); i++) {
+            int idMate = (int) modeloTabla.getValueAt(i, 0);
+            String notaSt = (String) modeloTabla.getValueAt(i, 2);  //problema aca
+            System.out.println(notaSt);
+            double nota = Double.parseDouble(notaSt);
+            insData.actualizarNota(idAlu, idMate, nota);
+        }
+    }//GEN-LAST:event_botonGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbAlumnos;
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonSalir;
+    private javax.swing.JComboBox<Alumno> cbAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -131,5 +193,24 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Nota");
         tablaMaterias.setModel(modeloTabla);
+    }
+
+    private void cargarCombo() {
+        List<Alumno> listaAlu = aluData.listarAlumnos();
+
+        for (Iterator<Alumno> iterator = listaAlu.iterator(); iterator.hasNext();) {
+            Alumno alu = iterator.next();
+            cbAlumnos.addItem(alu);
+        }
+    }
+
+    private void cargarDatosTabla(Inscripcion insc) {
+        modeloTabla.addRow(new Object[]{insc.getMateria().getIdMateria(), insc.getMateria().getNombre(), insc.getNota()});
+    }
+
+    private void limpiarTabla(int tamaño) {
+        for (int i = tamaño - 1; i >= 0; i--) {
+            modeloTabla.removeRow(i);
+        }
     }
 }
