@@ -178,8 +178,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoYear">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoYearKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textoNombre">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoNombreKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioButtonEstado">
           <Properties>
@@ -234,6 +240,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoID">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoIDKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonAlta">
           <Properties>

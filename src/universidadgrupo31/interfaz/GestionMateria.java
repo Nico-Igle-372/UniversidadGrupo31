@@ -10,6 +10,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     public GestionMateria() {
         initComponents();
+        desactivaBotonesBasicos();
+        desactivaBotonesAvanzados();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +48,18 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Año:");
 
         jLabel5.setText("Estado:");
+
+        textoYear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoYearKeyReleased(evt);
+            }
+        });
+
+        textoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoNombreKeyReleased(evt);
+            }
+        });
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -85,6 +99,12 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Codigo ID: ");
+
+        textoID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoIDKeyReleased(evt);
+            }
+        });
 
         botonAlta.setText("Dar de Alta");
         botonAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +233,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 textoNombre.setText(mat.getNombre());
                 textoYear.setText(String.valueOf(mat.getAnioMateria()));
                 radioButtonEstado.setSelected(mat.isEstado());
+                
+                botonesAvanzados();
             }
         } catch (NullPointerException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
@@ -231,7 +253,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
         }
     }//GEN-LAST:event_botonNuevoActionPerformed
@@ -249,7 +271,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
         }
     }//GEN-LAST:event_botonModificarActionPerformed
@@ -267,11 +289,26 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         vaciarDatos();
     }//GEN-LAST:event_botonAltaActionPerformed
 
+    private void textoIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoIDKeyReleased
+        botonesBasicos();
+    }//GEN-LAST:event_textoIDKeyReleased
+
+    private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
+        botonesAvanzados();
+    }//GEN-LAST:event_textoNombreKeyReleased
+
+    private void textoYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoYearKeyReleased
+        botonesAvanzados();
+        botonesBasicos();
+    }//GEN-LAST:event_textoYearKeyReleased
+
     public void vaciarDatos() {
         textoID.setText("");
         textoNombre.setText("");
         textoYear.setText(null);
         radioButtonEstado.setSelected(false);
+        desactivaBotonesBasicos();
+        desactivaBotonesAvanzados();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAlta;
@@ -293,4 +330,49 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textoYear;
     // End of variables declaration//GEN-END:variables
 
+    private void botonesBasicos() {
+        if (textoID.getText().isEmpty() || (!textoID.getText().matches("[0-9].*") || textoID.getText().matches(".*[A-Z, a-z].*"))) {
+            desactivaBotonesBasicos();
+            desactivaBotonesAvanzados();
+        }
+        if (!textoID.getText().isEmpty() && textoID.getText().matches("[0-9].*") && !textoID.getText().matches(".*[A-Z, a-z].*")) {
+            activaBotonesBasicos();
+        }
+    }
+
+    private void botonesAvanzados() {
+        if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || !textoYear.getText().matches("[0-9].*") 
+                || textoYear.getText().matches(".*[A-Z, a-z].*")) {
+            desactivaBotonesAvanzados();
+        }
+        if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && textoYear.getText().matches("[0-9].*")
+                && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
+            activaTodosBotones();
+        }
+    }
+
+    private void activaBotonesBasicos() {
+        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonAlta.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+    }
+
+    private void activaTodosBotones() {
+        botonAlta.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+        botonNuevo.setEnabled(Boolean.TRUE);
+        botonModificar.setEnabled(Boolean.TRUE);
+        botonBuscarID.setEnabled(Boolean.TRUE);
+    }
+
+    private void desactivaBotonesAvanzados() {
+        botonNuevo.setEnabled(Boolean.FALSE);
+        botonModificar.setEnabled(Boolean.FALSE);
+    }
+
+    private void desactivaBotonesBasicos() {
+        botonBuscarID.setEnabled(Boolean.FALSE);
+        botonAlta.setEnabled(Boolean.FALSE);
+        botonEliminar.setEnabled(Boolean.FALSE);
+    }
 }
