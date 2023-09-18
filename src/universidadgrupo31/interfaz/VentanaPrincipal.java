@@ -1,5 +1,6 @@
 package universidadgrupo31.interfaz;
 
+
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
@@ -8,6 +9,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         conectar();
+        setIconImage(getIconImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -33,12 +35,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 547, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
 
         jMenu1.setText("Alumno");
 
@@ -102,6 +106,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu6.setText("Salir");
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -114,7 +123,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -173,6 +182,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(aluPorMate);
     }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed
 
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+       System.exit(WIDTH);
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -225,5 +238,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
         Connection conn = Conexion.getConexion();
     }
+    
+//    @Override
+//    public Image getIconImage(){
+//        
+//        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logoulp2.jpg"));
+//        return retValue;
+//    }
     
 }
