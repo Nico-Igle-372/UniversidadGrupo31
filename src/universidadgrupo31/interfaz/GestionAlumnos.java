@@ -16,6 +16,13 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     public GestionAlumnos() {
         initComponents();
+        botonAlta.setEnabled(Boolean.FALSE);
+        botonBuscarDni.setEnabled(Boolean.FALSE);
+        botonBuscarID.setEnabled(Boolean.FALSE);
+        botonEliminar.setEnabled(Boolean.FALSE);
+        botonModificar.setEnabled(Boolean.FALSE);
+        botonNuevo.setEnabled(Boolean.FALSE);
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +69,44 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Fecha de Nacimiento:");
 
+        textoDNI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textoDNIFocusLost(evt);
+            }
+        });
+        textoDNI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                textoDNIMouseExited(evt);
+            }
+        });
+        textoDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoDNIKeyReleased(evt);
+            }
+        });
+
+        textoApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textoApellidoFocusLost(evt);
+            }
+        });
+        textoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoApellidoKeyReleased(evt);
+            }
+        });
+
+        textoNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textoNombreFocusLost(evt);
+            }
+        });
+        textoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoNombreKeyReleased(evt);
+            }
+        });
+
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
 
         botonBuscarID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
@@ -101,6 +146,17 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Codigo ID: ");
 
+        textoID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textoIDFocusLost(evt);
+            }
+        });
+        textoID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoIDKeyReleased(evt);
+            }
+        });
+
         botonBuscarDni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
         botonBuscarDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +165,16 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         });
 
         jDateChooser2.setDateFormatString("yyyy/MM/dd");
+        jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser2PropertyChange(evt);
+            }
+        });
+        jDateChooser2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jDateChooser2KeyReleased(evt);
+            }
+        });
 
         botonAlta.setText("Dar de Alta");
         botonAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -246,50 +312,58 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         Alumno alu = new Alumno();
 
-        try {
+        if (textoNombre.getText().isEmpty() || textoApellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre y apellido");
+        } else {
 
-            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
-            alu.setDni(Integer.parseInt(textoDNI.getText()));
-            alu.setApellido(textoApellido.getText());
-            alu.setNombre(textoNombre.getText());
-            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            alu.setFechaNac(fecha);
-            alu.setEstado(radioButtonEstado.isSelected());
-            if (alu != null) {
-                aluData.guardarAlumno(alu);
+            try {
+
+                alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+                alu.setDni(Integer.parseInt(textoDNI.getText()));
+                alu.setApellido(textoApellido.getText());
+                alu.setNombre(textoNombre.getText());
+                LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                alu.setFechaNac(fecha);
+                alu.setEstado(true);
+                if (alu != null) {
+                    aluData.guardarAlumno(alu);
+                    vaciarDatos();
+                    JOptionPane.showMessageDialog(this, "Alumno Guardado");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al guardar");
+                }
+            } catch (NumberFormatException | NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
                 vaciarDatos();
-                JOptionPane.showMessageDialog(this, "Alumno Guardado");
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al guardar");
             }
-        } catch (NumberFormatException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
-            vaciarDatos();
 
         }
-
-
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         Alumno alu = new Alumno();
-        try {
-            alu.setIdAlumno(Integer.parseInt(textoID.getText()));
-            alu.setDni(Integer.parseInt(textoDNI.getText()));
-            alu.setApellido(textoApellido.getText());
-            alu.setNombre(textoNombre.getText());
-            LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            alu.setFechaNac(fecha);
-            alu.setEstado(radioButtonEstado.isSelected());
-            if (alu != null) {
-                aluData.modificarAlumno(alu);
+        if (textoNombre.getText().isEmpty() || textoApellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre y apellido");
+        } else {
+            try {
+                alu.setIdAlumno(Integer.parseInt(textoID.getText()));
+                alu.setDni(Integer.parseInt(textoDNI.getText()));
+                alu.setApellido(textoApellido.getText());
+                alu.setNombre(textoNombre.getText());
+                LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                alu.setFechaNac(fecha);
+                alu.setEstado(radioButtonEstado.isSelected());
+                if (alu != null) {
+                    aluData.modificarAlumno(alu);
+                    vaciarDatos();
+                }
+            } catch (NumberFormatException | NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
                 vaciarDatos();
-            }
-        } catch (NumberFormatException | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
-            vaciarDatos();
 
+            }
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
@@ -358,6 +432,86 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botonAltaActionPerformed
 
+    private void textoNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoNombreFocusLost
+      
+    }//GEN-LAST:event_textoNombreFocusLost
+
+    private void textoApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoApellidoFocusLost
+       
+    }//GEN-LAST:event_textoApellidoFocusLost
+
+    private void textoIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoIDFocusLost
+      
+    }//GEN-LAST:event_textoIDFocusLost
+
+    private void textoDNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textoDNIFocusLost
+      
+    }//GEN-LAST:event_textoDNIFocusLost
+
+    private void textoDNIMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoDNIMouseExited
+        
+    }//GEN-LAST:event_textoDNIMouseExited
+
+    private void textoIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoIDKeyReleased
+        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+        botonAlta.setEnabled(Boolean.TRUE);
+        if(textoID.getText().isEmpty()){
+         botonBuscarID.setEnabled(Boolean.FALSE);
+         botonEliminar.setEnabled(Boolean.FALSE);
+         botonAlta.setEnabled(Boolean.FALSE);
+        }
+    }//GEN-LAST:event_textoIDKeyReleased
+
+    private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
+       botonBuscarDni.setEnabled(Boolean.TRUE);
+       if(textoDNI.getText().isEmpty()){
+           botonBuscarDni.setEnabled(Boolean.FALSE);
+       }
+    }//GEN-LAST:event_textoDNIKeyReleased
+
+    private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
+        String fecha=jDateChooser2.getDate()+"";
+        if(!textoApellido.getText().isEmpty()&&!textoNombre.getText().isEmpty()
+                &&!fecha.isEmpty()&&!textoDNI.getText().isEmpty()&&!textoID.getText().isEmpty()){
+            botonModificar.setEnabled(Boolean.TRUE);
+            botonNuevo.setEnabled(Boolean.TRUE);
+        }else{
+            botonModificar.setEnabled(Boolean.FALSE);
+            botonNuevo.setEnabled(Boolean.FALSE);
+        }
+    }//GEN-LAST:event_textoApellidoKeyReleased
+
+    private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
+         String fecha=jDateChooser2.getDate()+"";
+        
+        if(!textoApellido.getText().isEmpty()&&!textoNombre.getText().isEmpty()
+                &&!fecha.equalsIgnoreCase("null")&&!textoDNI.getText().isEmpty()&&!textoID.getText().isEmpty()){
+            botonModificar.setEnabled(Boolean.TRUE);
+            botonNuevo.setEnabled(Boolean.TRUE);
+        }else{
+            botonModificar.setEnabled(Boolean.FALSE);
+            botonNuevo.setEnabled(Boolean.FALSE);
+        }
+    }//GEN-LAST:event_textoNombreKeyReleased
+
+    private void jDateChooser2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser2KeyReleased
+      
+    }//GEN-LAST:event_jDateChooser2KeyReleased
+
+    private void jDateChooser2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser2PropertyChange
+        String fecha=jDateChooser2.getDate()+"";
+         
+        if(!textoApellido.getText().isEmpty()&&!textoNombre.getText().isEmpty()
+                &&!fecha.equalsIgnoreCase("null")&&!textoDNI.getText().isEmpty()&&!textoID.getText().isEmpty()){
+            botonModificar.setEnabled(Boolean.TRUE);
+            botonNuevo.setEnabled(Boolean.TRUE);
+        }else{
+            botonModificar.setEnabled(Boolean.FALSE);
+            botonNuevo.setEnabled(Boolean.FALSE);
+        }
+    }//GEN-LAST:event_jDateChooser2PropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAlta;
@@ -390,5 +544,17 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         textoNombre.setText("");
         jDateChooser2.setDate(null);
         radioButtonEstado.setSelected(false);
+    }
+    public void activarBoton(){
+        botonAlta.setEnabled(Boolean.TRUE);
+        botonBuscarDni.setEnabled(Boolean.TRUE);
+        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+        botonModificar.setEnabled(Boolean.TRUE);
+        botonNuevo.setEnabled(Boolean.TRUE);
+       
+    }
+    public void desactivarBoton(){
+        
     }
 }

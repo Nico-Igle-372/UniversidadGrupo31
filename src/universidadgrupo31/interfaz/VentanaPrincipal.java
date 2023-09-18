@@ -1,5 +1,7 @@
 package universidadgrupo31.interfaz;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
@@ -8,6 +10,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         conectar();
+        setIconImage(getIconImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -33,12 +36,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 547, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
 
         jMenu1.setText("Alumno");
 
@@ -119,7 +124,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -233,6 +238,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void conectar(){
         Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
         Connection conn = Conexion.getConexion();
+    }
+    
+    @Override
+    public Image getIconImage(){
+        
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logoulp2.jpg"));
+        return retValue;
     }
     
 }
