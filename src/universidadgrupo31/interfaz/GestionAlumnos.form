@@ -215,10 +215,23 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoDNI">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textoDNIFocusLost"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textoDNIMouseExited"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoDNIKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textoApellido">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textoApellidoFocusLost"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoApellidoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="textoNombre">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textoNombreFocusLost"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoNombreKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioButtonEstado">
           <Properties>
@@ -275,6 +288,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoID">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textoIDFocusLost"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textoIDKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonBuscarDni">
           <Properties>
@@ -290,6 +307,10 @@
           <Properties>
             <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
           </Properties>
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jDateChooser2PropertyChange"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jDateChooser2KeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonAlta">
           <Properties>
