@@ -1,7 +1,6 @@
 package universidadgrupo31.interfaz;
 
-import java.awt.Image;
-import java.awt.Toolkit;
+
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
@@ -240,11 +239,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Connection conn = Conexion.getConexion();
     }
     
-    @Override
-    public Image getIconImage(){
-        
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logoulp2.jpg"));
-        return retValue;
-    }
+//    @Override
+//    public Image getIconImage(){
+//        
+//        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/logoulp2.jpg"));
+//        return retValue;
+//    }
     
 }
