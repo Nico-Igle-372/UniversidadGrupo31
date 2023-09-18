@@ -9,7 +9,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         conectar();
-        setIconImage(getIconImage());
+//        setIconImage(getIconImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +27,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuNotas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuAlumnosXMateria = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,14 +104,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Salir");
-        jMenu6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu6ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu6);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,10 +173,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(aluPorMate);
     }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed
 
-    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
-       System.exit(WIDTH);
-    }//GEN-LAST:event_jMenu6ActionPerformed
-
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -225,7 +212,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuAlumnosXMateria;
     private javax.swing.JMenuItem menuFormularioAlumno;
