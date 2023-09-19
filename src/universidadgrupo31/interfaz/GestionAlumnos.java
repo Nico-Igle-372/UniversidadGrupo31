@@ -429,8 +429,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void activarBoton() {
-        if (!textoApellido.getText().isEmpty() && !textoNombre.getText().isEmpty()
-                && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null && !textoDNI.getText().isEmpty()) {
+        if (!textoApellido.getText().isEmpty() &&textoApellido.getText().matches("[a-zA-Z]*") && !textoNombre.getText().isEmpty()&&textoNombre.getText().matches("[a-zA-Z]*")
+            && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null && !textoDNI.getText().isEmpty()&&textoDNI.getText().matches("[0-9]*")) {
             botonModificar.setEnabled(Boolean.TRUE);
             botonNuevo.setEnabled(Boolean.TRUE);
         } else {
