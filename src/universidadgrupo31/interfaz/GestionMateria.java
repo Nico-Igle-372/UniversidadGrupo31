@@ -1,16 +1,19 @@
 package universidadgrupo31.interfaz;
 
+import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.MateriaData;
 import universidadgrupo31.entidades.Materia;
 
 public class GestionMateria extends javax.swing.JInternalFrame {
-    
+
     private static MateriaData matData = new MateriaData();
-    
+
     public GestionMateria() {
         initComponents();
+        desactivaBotonesBasicos();
+        desactivaBotonesAvanzados();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -45,6 +48,18 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Año:");
 
         jLabel5.setText("Estado:");
+
+        textoYear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoYearKeyReleased(evt);
+            }
+        });
+
+        textoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoNombreKeyReleased(evt);
+            }
+        });
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -84,6 +99,12 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Codigo ID: ");
+
+        textoID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textoIDKeyReleased(evt);
+            }
+        });
 
         botonAlta.setText("Dar de Alta");
         botonAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -195,47 +216,64 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        
-        matData.eliminarMateria(Integer.parseInt(textoID.getText()));
+        try {
+            matData.eliminarMateria(Integer.parseInt(textoID.getText()));
+        } catch (NumberFormatException | NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
+        }
         vaciarDatos();
-        
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIDActionPerformed
-        
+
         Materia mat = new Materia();
-        mat = matData.buscarMateria(Integer.parseInt(textoID.getText()));
-        if (mat != null) {
-            textoNombre.setText(mat.getNombre());
-            textoYear.setText(String.valueOf(mat.getAnioMateria()));
-            radioButtonEstado.setSelected(mat.isEstado());
-            
-            
+        try {
+            mat = matData.buscarMateria(Integer.parseInt(textoID.getText()));
+            if (mat != null) {
+                textoNombre.setText(mat.getNombre());
+                textoYear.setText(String.valueOf(mat.getAnioMateria()));
+                radioButtonEstado.setSelected(mat.isEstado());
+                
+                botonesAvanzados();
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
         }
-        
+
     }//GEN-LAST:event_botonBuscarIDActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         Materia mat = new Materia();
-        
-        mat.setNombre(textoNombre.getText());
-        mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
-        mat.setEstado(radioButtonEstado.isSelected());
-        
-        matData.guardarMateria(mat);
-        
-        
+        if (!textoNombre.getText().isEmpty()) {
+            try {
+                mat.setNombre(textoNombre.getText());
+                mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
+                mat.setEstado(radioButtonEstado.isSelected());
+                matData.guardarMateria(mat);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
+        }
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        
         Materia mat = new Materia();
-        mat.setIdMateria(Integer.parseInt(textoID.getText()));
-        mat.setNombre(textoNombre.getText());
-        mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
-        mat.setEstado(true);
-        matData.modificarMateria(mat);
-        vaciarDatos();
+        if (!textoNombre.getText().isEmpty()) {
+            try {
+                mat.setIdMateria(Integer.parseInt(textoID.getText()));
+                mat.setNombre(textoNombre.getText());
+                mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
+                mat.setEstado(true);
+                matData.modificarMateria(mat);
+                vaciarDatos();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -243,16 +281,34 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
-        matData.altaMateria(Integer.parseInt(textoID.getText()));
+        try {
+            matData.altaMateria(Integer.parseInt(textoID.getText()));
+        } catch (NumberFormatException | NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
+        }
         vaciarDatos();
     }//GEN-LAST:event_botonAltaActionPerformed
-    
+
+    private void textoIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoIDKeyReleased
+        botonesBasicos();
+    }//GEN-LAST:event_textoIDKeyReleased
+
+    private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
+        botonesAvanzados();
+    }//GEN-LAST:event_textoNombreKeyReleased
+
+    private void textoYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoYearKeyReleased
+        botonesAvanzados();
+        botonesBasicos();
+    }//GEN-LAST:event_textoYearKeyReleased
+
     public void vaciarDatos() {
-        
         textoID.setText("");
         textoNombre.setText("");
         textoYear.setText(null);
         radioButtonEstado.setSelected(false);
+        desactivaBotonesBasicos();
+        desactivaBotonesAvanzados();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAlta;
@@ -274,4 +330,49 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textoYear;
     // End of variables declaration//GEN-END:variables
 
+    private void botonesBasicos() {
+        if (textoID.getText().isEmpty() || (!textoID.getText().matches("[0-9].*") || textoID.getText().matches(".*[A-Z, a-z].*"))) {
+            desactivaBotonesBasicos();
+            desactivaBotonesAvanzados();
+        }
+        if (!textoID.getText().isEmpty() && textoID.getText().matches("[0-9].*") && !textoID.getText().matches(".*[A-Z, a-z].*")) {
+            activaBotonesBasicos();
+        }
+    }
+
+    private void botonesAvanzados() {
+        if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || !textoYear.getText().matches("[0-9].*") 
+                || textoYear.getText().matches(".*[A-Z, a-z].*")) {
+            desactivaBotonesAvanzados();
+        }
+        if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && textoYear.getText().matches("[0-9].*")
+                && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
+            activaTodosBotones();
+        }
+    }
+
+    private void activaBotonesBasicos() {
+        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonAlta.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+    }
+
+    private void activaTodosBotones() {
+        botonAlta.setEnabled(Boolean.TRUE);
+        botonEliminar.setEnabled(Boolean.TRUE);
+        botonNuevo.setEnabled(Boolean.TRUE);
+        botonModificar.setEnabled(Boolean.TRUE);
+        botonBuscarID.setEnabled(Boolean.TRUE);
+    }
+
+    private void desactivaBotonesAvanzados() {
+        botonNuevo.setEnabled(Boolean.FALSE);
+        botonModificar.setEnabled(Boolean.FALSE);
+    }
+
+    private void desactivaBotonesBasicos() {
+        botonBuscarID.setEnabled(Boolean.FALSE);
+        botonAlta.setEnabled(Boolean.FALSE);
+        botonEliminar.setEnabled(Boolean.FALSE);
+    }
 }

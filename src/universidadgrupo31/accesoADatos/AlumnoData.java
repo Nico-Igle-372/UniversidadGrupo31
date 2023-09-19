@@ -46,7 +46,7 @@ public class AlumnoData {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al guardar alumno \n "+ex.getMessage());
         }
     }
 
@@ -126,17 +126,16 @@ public class AlumnoData {
     }
 
     public void modificarAlumno(Alumno alumno) {
-        String sql = "UPDATE `alumno` SET `dni`=?,`apellido`=?,`nombre`=?,"
-                + "`fechaNacimiento`=?,`estado`=? WHERE idAlumno=4";
+        String sql = "UPDATE `alumno` SET `apellido`=?,`nombre`=?,"
+                + "`fechaNacimiento`=? WHERE dni=?";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(6, alumno.getIdAlumno());
-            ps.setInt(1, alumno.getDni());
-            ps.setString(2, alumno.getApellido());
-            ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
-            ps.setBoolean(5, alumno.isEstado());
+            ps.setInt(4, alumno.getDni());
+            ps.setString(1, alumno.getApellido());
+            ps.setString(2, alumno.getNombre());
+            ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
+            
 
             int rs = ps.executeUpdate();
             if (rs == 1) {
@@ -146,17 +145,17 @@ public class AlumnoData {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, "Error al modificar alumno\n "+ex.getMessage());
         }
     }
 
-    public void eliminarAlumno(int id) {
-        String upd = "UPDATE alumno SET estado=0 WHERE idAlumno=?";
+    public void eliminarAlumno(int dni) {
+        String upd = "UPDATE alumno SET estado=0 WHERE dni=?";
         PreparedStatement ps;
         try {
 
             ps = conn.prepareStatement(upd);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             int registro = ps.executeUpdate();
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro el alumno");
@@ -171,19 +170,19 @@ public class AlumnoData {
 
     }
 
-    public void altaAlumno(int id) {
-        String upd = "UPDATE alumno SET estado=1 WHERE idAlumno=?";
+    public void altaAlumno(int dni) {
+        String upd = "UPDATE alumno SET estado=1 WHERE dni=?";
         PreparedStatement ps;
         try {
 
             ps = conn.prepareStatement(upd);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             int registro = ps.executeUpdate();
             if (registro == 0) {
                 JOptionPane.showMessageDialog(null, "No se encontro el alumno");
 
             } else {
-                JOptionPane.showMessageDialog(null, "Alumno eliminado");
+                JOptionPane.showMessageDialog(null, "Alumno reinscripto");
             }
             ps.close();
         } catch (SQLException ex) {
