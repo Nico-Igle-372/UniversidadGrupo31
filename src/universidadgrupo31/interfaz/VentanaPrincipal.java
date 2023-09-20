@@ -152,6 +152,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ActualizadorNotas cargaNotas = new ActualizadorNotas();
         cargaNotas.setVisible(true);
         cargaNotas.setClosable(true);
+        cargaNotas.setLocation((escritorio.getWidth()-cargaNotas.getWidth())/2, (escritorio.getHeight()-cargaNotas.getHeight())/2);
         escritorio.add(cargaNotas);
         escritorio.moveToFront(cargaNotas);
     }//GEN-LAST:event_menuNotasActionPerformed
@@ -163,6 +164,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         GestionAlumnos formuAlumnos = new GestionAlumnos();
         formuAlumnos.setClosable(true);
         formuAlumnos.setVisible(true);
+        formuAlumnos.setLocation((escritorio.getWidth()-formuAlumnos.getWidth())/2, (escritorio.getHeight()-formuAlumnos.getHeight())/2);
         escritorio.add(formuAlumnos);
         escritorio.moveToFront(formuAlumnos);
     }//GEN-LAST:event_menuFormularioAlumnoActionPerformed
@@ -173,6 +175,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         GestionMateria formuMateria = new GestionMateria();
         formuMateria.setVisible(true);
+        formuMateria.setLocation((escritorio.getWidth()-formuMateria.getWidth())/2, (escritorio.getHeight()-formuMateria.getHeight())/2);
         escritorio.add(formuMateria);
         escritorio.moveToFront(formuMateria);
     }//GEN-LAST:event_menuFormularioMateriaActionPerformed
@@ -184,6 +187,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         GestionInscripcion formuInscripcion = new GestionInscripcion();
         formuInscripcion.setVisible(true);
         formuInscripcion.setClosable(true);
+        formuInscripcion.setLocation((escritorio.getWidth()-formuInscripcion.getWidth())/2, (escritorio.getHeight()-formuInscripcion.getHeight())/2);
         escritorio.add(formuInscripcion);
         escritorio.moveToFront(formuInscripcion);
     }//GEN-LAST:event_menuInscripcionesActionPerformed
@@ -195,6 +199,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         AlumnoPorMateria aluPorMate= new AlumnoPorMateria();
         aluPorMate.setVisible(true);
         aluPorMate.setClosable(true);
+         aluPorMate.setLocation((escritorio.getWidth()-aluPorMate.getWidth())/2, (escritorio.getHeight()-aluPorMate.getHeight())/2);
         escritorio.add(aluPorMate);
         escritorio.moveToFront(aluPorMate);
     }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed

@@ -28,7 +28,9 @@ public class UniversidadGrupo31 {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-      
-       new VentanaPrincipal().setVisible(true);
+      VentanaPrincipal ventana= new VentanaPrincipal();
+       ventana.setVisible(true);
+       ventana.setLocationRelativeTo(null);
+       
     }
 }
