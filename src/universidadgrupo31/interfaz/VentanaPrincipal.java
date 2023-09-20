@@ -1,17 +1,26 @@
 package universidadgrupo31.interfaz;
 
+<<<<<<< HEAD
 
 import java.awt.Image;
 import java.awt.Toolkit;
+=======
+>>>>>>> main
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    
     public VentanaPrincipal() {
         initComponents();
         conectar();
+<<<<<<< HEAD
         setIconImage(getIconImage());
+=======
+        setResizable(false);
+//      setIconImage(getIconImage());
+        
+>>>>>>> main
     }
 
     @SuppressWarnings("unchecked")
@@ -19,7 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        imagenFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuFormularioAlumno = new javax.swing.JMenuItem();
@@ -32,26 +41,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuAlumnosXMateria = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(664, 632));
+        setBackground(new java.awt.Color(51, 102, 255));
 
         escritorio.setMaximumSize(new java.awt.Dimension(664, 600));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoulp664.jpg"))); // NOI18N
+        imagenFondo.setForeground(new java.awt.Color(51, 51, 255));
+        imagenFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoulp664.jpg"))); // NOI18N
 
-        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(imagenFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(escritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(imagenFondo)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(escritorioLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(imagenFondo)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
+        jMenuBar1.setBackground(new java.awt.Color(153, 204, 255));
 
         jMenu1.setText("Alumno");
 
@@ -66,11 +86,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materia");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
 
         menuFormularioMateria.setText("Formulario de Materia");
         menuFormularioMateria.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +150,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void menuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNotasActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        escritorio.add(imagenFondo);
         ActualizadorNotas cargaNotas = new ActualizadorNotas();
         cargaNotas.setVisible(true);
         cargaNotas.setClosable(true);
@@ -145,6 +161,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void menuFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormularioAlumnoActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        escritorio.add(imagenFondo);
         GestionAlumnos formuAlumnos = new GestionAlumnos();
         formuAlumnos.setClosable(true);
         formuAlumnos.setVisible(true);
@@ -152,13 +169,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(formuAlumnos);
     }//GEN-LAST:event_menuFormularioAlumnoActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-
-    }//GEN-LAST:event_jMenu2ActionPerformed
-
     private void menuFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormularioMateriaActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        escritorio.add(imagenFondo);
         GestionMateria formuMateria = new GestionMateria();
         formuMateria.setVisible(true);
         escritorio.add(formuMateria);
@@ -168,6 +182,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void menuInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInscripcionesActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        escritorio.add(imagenFondo);
         GestionInscripcion formuInscripcion = new GestionInscripcion();
         formuInscripcion.setVisible(true);
         formuInscripcion.setClosable(true);
@@ -178,6 +193,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void menuAlumnosXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAlumnosXMateriaActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
+        escritorio.add(imagenFondo);
         AlumnoPorMateria aluPorMate= new AlumnoPorMateria();
         aluPorMate.setVisible(true);
         aluPorMate.setClosable(true);
@@ -220,7 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel imagenFondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
