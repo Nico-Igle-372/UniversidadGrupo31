@@ -151,7 +151,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         ActualizadorNotas cargaNotas = new ActualizadorNotas();
         cargaNotas.setVisible(true);
-        cargaNotas.setClosable(true);
         cargaNotas.setLocation((escritorio.getWidth()-cargaNotas.getWidth())/2, (escritorio.getHeight()-cargaNotas.getHeight())/2);
         escritorio.add(cargaNotas);
         escritorio.moveToFront(cargaNotas);
@@ -162,7 +161,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         escritorio.add(imagenFondo);
         GestionAlumnos formuAlumnos = new GestionAlumnos();
-        formuAlumnos.setClosable(true);
         formuAlumnos.setVisible(true);
         formuAlumnos.setLocation((escritorio.getWidth()-formuAlumnos.getWidth())/2, (escritorio.getHeight()-formuAlumnos.getHeight())/2);
         escritorio.add(formuAlumnos);
@@ -186,7 +184,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         GestionInscripcion formuInscripcion = new GestionInscripcion();
         formuInscripcion.setVisible(true);
-        formuInscripcion.setClosable(true);
         formuInscripcion.setLocation((escritorio.getWidth()-formuInscripcion.getWidth())/2, (escritorio.getHeight()-formuInscripcion.getHeight())/2);
         escritorio.add(formuInscripcion);
         escritorio.moveToFront(formuInscripcion);
