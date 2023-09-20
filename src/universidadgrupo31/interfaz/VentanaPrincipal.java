@@ -1,11 +1,11 @@
 package universidadgrupo31.interfaz;
 
-<<<<<<< HEAD
+
 
 import java.awt.Image;
 import java.awt.Toolkit;
-=======
->>>>>>> main
+
+
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
@@ -14,13 +14,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         conectar();
-<<<<<<< HEAD
-        setIconImage(getIconImage());
-=======
+
         setResizable(false);
-//      setIconImage(getIconImage());
+      setIconImage(getIconImage());
         
->>>>>>> main
+
     }
 
     @SuppressWarnings("unchecked")
@@ -257,7 +255,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     @Override
     public Image getIconImage(){
         
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/iconoulp2.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/iconoulp3.png"));
         return retValue;
     }
     
