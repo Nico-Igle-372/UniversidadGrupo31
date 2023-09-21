@@ -95,6 +95,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        botonInscribir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonInscribir.setText("Inscribir");
         botonInscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +103,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        botonAnularIns.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonAnularIns.setText("Anular Inscripcion");
         botonAnularIns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +111,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        botonSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,10 +129,10 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
                 .addGap(131, 131, 131))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(botonInscribir)
+                .addComponent(botonInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonAnularIns, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonAnularIns)
-                .addGap(61, 61, 61)
                 .addComponent(botonSalir)
                 .addGap(50, 50, 50))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -180,9 +183,9 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonInscribir)
-                    .addComponent(botonAnularIns)
-                    .addComponent(botonSalir))
+                    .addComponent(botonInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAnularIns, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 

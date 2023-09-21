@@ -27,13 +27,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         textoYear = new javax.swing.JTextField();
         textoNombre = new javax.swing.JTextField();
         radioButtonEstado = new javax.swing.JRadioButton();
-        botonBuscarID = new javax.swing.JButton();
+        botonBuscarNombre = new javax.swing.JButton();
         botonNuevo = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        textoID = new javax.swing.JTextField();
         botonAlta = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
@@ -62,14 +60,17 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
+        radioButtonEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        radioButtonEstado.setEnabled(false);
 
-        botonBuscarID.setText("Buscar");
-        botonBuscarID.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscarNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
+        botonBuscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarIDActionPerformed(evt);
+                botonBuscarNombreActionPerformed(evt);
             }
         });
 
+        botonNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonNuevo.setText("Guardar Nuevo");
         botonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +85,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        botonModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonModificar.setText("Modificar");
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,18 +93,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             }
         });
 
+        botonSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Codigo ID: ");
-
-        textoID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                textoIDKeyReleased(evt);
             }
         });
 
@@ -125,42 +120,37 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
-                                .addComponent(radioButtonEstado)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textoID))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(textoYear, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(87, 87, 87)
-                                .addComponent(botonBuscarID, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(botonNuevo)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonModificar)
+                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 106, Short.MAX_VALUE)
+                                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(textoYear))
                                 .addGap(18, 18, 18)
+                                .addComponent(botonBuscarNombre))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(radioButtonEstado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botonEliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botonAlta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonSalir)
-                                .addGap(26, 26, 26))))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(27, 27, 27))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(202, 202, 202)
+                .addGap(191, 191, 191)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,45 +159,42 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(textoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addComponent(botonBuscarID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonBuscarNombre))
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textoYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioButtonEstado, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(50, 50, 50)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioButtonEstado)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonEliminar)
+                        .addComponent(botonAlta)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonNuevo)
-                    .addComponent(botonEliminar)
-                    .addComponent(botonModificar)
-                    .addComponent(botonSalir)
-                    .addComponent(botonAlta))
-                .addGap(59, 59, 59))
+                    .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
+            .addGap(0, 451, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -215,54 +202,24 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
         try {
-            matData.eliminarMateria(Integer.parseInt(textoID.getText()));
-        } catch (NumberFormatException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
+            matData.altaMateria(textoNombre.getText());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Necesita completar el campo nombre a buscar");
         }
         vaciarDatos();
-    }//GEN-LAST:event_botonEliminarActionPerformed
+    }//GEN-LAST:event_botonAltaActionPerformed
 
-    private void botonBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarIDActionPerformed
-
-        Materia mat = new Materia();
-        try {
-            mat = matData.buscarMateria(Integer.parseInt(textoID.getText()));
-            if (mat != null) {
-                textoNombre.setText(mat.getNombre());
-                textoYear.setText(String.valueOf(mat.getAnioMateria()));
-                radioButtonEstado.setSelected(mat.isEstado());
-                
-                botonesAvanzados();
-            }
-        } catch (NullPointerException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
-        }
-
-    }//GEN-LAST:event_botonBuscarIDActionPerformed
-
-    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
-        Materia mat = new Materia();
-        if (!textoNombre.getText().isEmpty()) {
-            try {
-                mat.setNombre(textoNombre.getText());
-                mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
-                mat.setEstado(radioButtonEstado.isSelected());
-                matData.guardarMateria(mat);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
-        }
-    }//GEN-LAST:event_botonNuevoActionPerformed
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         Materia mat = new Materia();
         if (!textoNombre.getText().isEmpty()) {
             try {
-                mat.setIdMateria(Integer.parseInt(textoID.getText()));
+                mat.setIdMateria(1);
                 mat.setNombre(textoNombre.getText());
                 mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
                 mat.setEstado(true);
@@ -276,25 +233,60 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_botonSalirActionPerformed
-
-    private void botonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAltaActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         try {
-            matData.altaMateria(Integer.parseInt(textoID.getText()));
-        } catch (NumberFormatException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo ID de Materia");
+            matData.eliminarMateria(textoNombre.getText());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Necesita completar el campo nombre a buscar");
         }
         vaciarDatos();
-    }//GEN-LAST:event_botonAltaActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void textoIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoIDKeyReleased
-        botonesBasicos();
-    }//GEN-LAST:event_textoIDKeyReleased
+    private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
+        Materia mat = new Materia();
+        if (!textoNombre.getText().isEmpty()) {
+            Materia mate = matData.buscarMateriaXNombre(textoNombre.getText());
+            if (mate == null) {
+                try {
+                    mat.setIdMateria(1);
+                    mat.setNombre(textoNombre.getText());
+                    mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
+                    mat.setEstado(radioButtonEstado.isSelected());
+                    matData.guardarMateria(mat);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ya existe una materia con ese nombre");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
+        }
+    }//GEN-LAST:event_botonNuevoActionPerformed
+
+    private void botonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarNombreActionPerformed
+
+        Materia mat = new Materia();
+        try {
+            mat = matData.buscarMateriaXNombre(textoNombre.getText());
+            if (mat != null) {
+                textoYear.setText(String.valueOf(mat.getAnioMateria()));
+                radioButtonEstado.setSelected(mat.isEstado());
+                botonesAvanzados();
+                if (mat.isEstado()) {
+                    botonAlta.setEnabled(Boolean.FALSE);
+                }else{
+                    botonEliminar.setEnabled(Boolean.FALSE);
+                }
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "No se puede dejar campos vacios");
+        }
+    }//GEN-LAST:event_botonBuscarNombreActionPerformed
 
     private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
         botonesAvanzados();
+        botonesBasicos();
     }//GEN-LAST:event_textoNombreKeyReleased
 
     private void textoYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoYearKeyReleased
@@ -303,7 +295,6 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textoYearKeyReleased
 
     public void vaciarDatos() {
-        textoID.setText("");
         textoNombre.setText("");
         textoYear.setText(null);
         radioButtonEstado.setSelected(false);
@@ -312,7 +303,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAlta;
-    private javax.swing.JButton botonBuscarID;
+    private javax.swing.JButton botonBuscarNombre;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonNuevo;
@@ -321,38 +312,42 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton radioButtonEstado;
-    private javax.swing.JTextField textoID;
     private javax.swing.JTextField textoNombre;
     private javax.swing.JTextField textoYear;
     // End of variables declaration//GEN-END:variables
 
     private void botonesBasicos() {
-        if (textoID.getText().isEmpty() || (!textoID.getText().matches("[0-9].*") || textoID.getText().matches(".*[A-Z, a-z].*"))) {
+        if (textoNombre.getText().isEmpty()) {
             desactivaBotonesBasicos();
             desactivaBotonesAvanzados();
-        }
-        if (!textoID.getText().isEmpty() && textoID.getText().matches("[0-9].*") && !textoID.getText().matches(".*[A-Z, a-z].*")) {
+        } else {
             activaBotonesBasicos();
         }
     }
 
     private void botonesAvanzados() {
-        if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || !textoYear.getText().matches("[0-9].*") 
-                || textoYear.getText().matches(".*[A-Z, a-z].*")) {
+        try {
+
+        if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || Integer.parseInt(textoYear.getText()) > 8
+                || Integer.parseInt(textoYear.getText()) < 1 || textoYear.getText().matches(".*[A-Z, a-z].*")) {
             desactivaBotonesAvanzados();
         }
-        if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && textoYear.getText().matches("[0-9].*")
-                && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
+        if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && Integer.parseInt(textoYear.getText()) <= 8
+                && Integer.parseInt(textoYear.getText()) >= 1 && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
             activaTodosBotones();
+        }
+                    
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Solo se pueden usar numeros naturales del 1 al 8");
+            textoYear.setText("");
         }
     }
 
     private void activaBotonesBasicos() {
-        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonBuscarNombre.setEnabled(Boolean.TRUE);
         botonAlta.setEnabled(Boolean.TRUE);
         botonEliminar.setEnabled(Boolean.TRUE);
     }
@@ -362,7 +357,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         botonEliminar.setEnabled(Boolean.TRUE);
         botonNuevo.setEnabled(Boolean.TRUE);
         botonModificar.setEnabled(Boolean.TRUE);
-        botonBuscarID.setEnabled(Boolean.TRUE);
+        botonBuscarNombre.setEnabled(Boolean.TRUE);
     }
 
     private void desactivaBotonesAvanzados() {
@@ -371,7 +366,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }
 
     private void desactivaBotonesBasicos() {
-        botonBuscarID.setEnabled(Boolean.FALSE);
+        botonBuscarNombre.setEnabled(Boolean.FALSE);
         botonAlta.setEnabled(Boolean.FALSE);
         botonEliminar.setEnabled(Boolean.FALSE);
     }
