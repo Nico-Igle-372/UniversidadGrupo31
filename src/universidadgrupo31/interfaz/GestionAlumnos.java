@@ -253,11 +253,13 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             Alumno alu2 = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
             if (alu2 == null) {
                 try {
+                    
+                    LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if(fecha.isBefore(LocalDate.of(LocalDate.now().getYear()-17,LocalDate.now().getMonth(),LocalDate.now().getDayOfMonth()))){
                     alu.setIdAlumno(1);
                     alu.setDni(Integer.parseInt(textoDNI.getText()));
                     alu.setApellido(textoApellido.getText());
                     alu.setNombre(textoNombre.getText());
-                    LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     alu.setFechaNac(fecha);
                     alu.setEstado(true);
                     if (alu != null) {
@@ -266,6 +268,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Alumno Guardado");
                     } else {
                         JOptionPane.showMessageDialog(null, "Error al guardar");
+                    }
+                   }else{
+                        JOptionPane.showMessageDialog(null, "Edad minima 17 años");
                     }
                 } catch (NumberFormatException | NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
