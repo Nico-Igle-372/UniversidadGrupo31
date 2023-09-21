@@ -62,6 +62,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
+        radioButtonEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        radioButtonEstado.setEnabled(false);
 
         botonBuscarID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar20.png"))); // NOI18N
         botonBuscarID.addActionListener(new java.awt.event.ActionListener() {
@@ -159,9 +161,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(49, 49, 49)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(textoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                                        .addComponent(textoYear))
+                                    .addComponent(textoNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                    .addComponent(textoYear, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(textoID, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                                 .addGap(24, 24, 24)
                                 .addComponent(botonBuscarID)))

@@ -80,6 +80,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         });
 
         radioButtonEstado.setBackground(new java.awt.Color(204, 255, 255));
+        radioButtonEstado.setEnabled(false);
 
         botonNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonNuevo.setText("Guardar Nuevo");

@@ -95,10 +95,8 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="textoNombre" pref="243" max="32767" attributes="0"/>
-                                          <Component id="textoYear" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="textoNombre" alignment="1" pref="243" max="32767" attributes="0"/>
+                                      <Component id="textoYear" alignment="1" max="32767" attributes="0"/>
                                       <Component id="textoID" pref="243" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -207,6 +205,10 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="cc" type="rgb"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor Por defecto"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="botonBuscarID">
