@@ -432,7 +432,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void activarBotonesBasicos() {
-        if (textoDNI.getText().isEmpty() || textoDNI.getText().matches("[a-zA-Z]*")) {
+        if (textoDNI.getText().isEmpty() || textoDNI.getText().matches("[a-zA-Z]*")||!textoDNI.getText().matches("[0-9]*")) {
             botonBuscarDni.setEnabled(Boolean.FALSE);
             botonEliminar.setEnabled(Boolean.FALSE);
             botonAlta.setEnabled(Boolean.FALSE);
