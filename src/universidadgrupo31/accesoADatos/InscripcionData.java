@@ -35,10 +35,8 @@ public class InscripcionData {
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
             ps.setInt(3, insc.getMateria().getIdMateria());
-            System.out.println("Inscripto fase 1");
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            System.out.println("Inscripto fase 2");
             if (rs.next()) {
                 insc.setIdInscripcion(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Inscripto satisfactoriamente");

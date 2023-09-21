@@ -9,6 +9,7 @@ import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.accesoADatos.InscripcionData;
 import universidadgrupo31.entidades.Alumno;
 import universidadgrupo31.entidades.Inscripcion;
+import universidadgrupo31.entidades.Materia;
 
 public class ActualizadorNotas extends javax.swing.JInternalFrame {
 
@@ -97,32 +98,30 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(33, 33, 33)
+                                    .addComponent(cbAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(33, 33, 33)
-                                            .addComponent(cbAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonSalir)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +140,7 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,20 +177,28 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
         int idAlu = alu.getIdAlumno();
         int registro = 0;
+        List<Inscripcion> inscripciones = insData.obtenerInscripcionesPorAlumno(idAlu);
         try {
             for (int fila = 0; fila < tablaMaterias.getRowCount(); fila++) {
                 int idMate = (int) tablaMaterias.getValueAt(fila, 0);
-                String notaSt = tablaMaterias.getValueAt(fila, 2).toString();                
+                String notaSt = tablaMaterias.getValueAt(fila, 2).toString().replace(',', '.');
                 double nota = Double.parseDouble(notaSt);
-                if(nota>10 || nota<0){
-                  JOptionPane.showMessageDialog(null, "Ingrese valores del 0 al 10");
-                }else{
-                tablaMaterias.setValueAt(nota, fila, 2);
-                insData.actualizarNota(idAlu, idMate, nota);
-                registro++;
-                }
-                
 
+                for (Iterator<Inscripcion> iterator = inscripciones.iterator(); iterator.hasNext();) {
+                    Inscripcion inscri = iterator.next();
+
+                    if (idMate == inscri.getMateria().getIdMateria()) {
+                        if (nota != inscri.getNota()) {
+                            if (nota > 10 || nota < 0) {
+                                JOptionPane.showMessageDialog(null, "Ingrese valores del 0 al 10");
+                            } else {
+                                tablaMaterias.setValueAt(nota, fila, 2);
+                                insData.actualizarNota(idAlu, idMate, nota);
+                                registro++;
+                            }
+                        }
+                    }
+                }
             }
             if (registro > 0) {
                 JOptionPane.showMessageDialog(null, "Se modificaron las notas correctamente");
@@ -201,11 +208,10 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese valores númericos");
         }
-
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void tablaMateriasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaMateriasFocusLost
-      
+
     }//GEN-LAST:event_tablaMateriasFocusLost
 
 
