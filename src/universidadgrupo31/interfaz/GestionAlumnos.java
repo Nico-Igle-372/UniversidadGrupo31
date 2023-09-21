@@ -250,23 +250,29 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         if (textoNombre.getText().isEmpty() || textoApellido.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese un nombre y apellido");
         } else {
-            try {
-                alu.setIdAlumno(1);
-                alu.setDni(Integer.parseInt(textoDNI.getText()));
-                alu.setApellido(textoApellido.getText());
-                alu.setNombre(textoNombre.getText());
-                LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                alu.setFechaNac(fecha);
-                alu.setEstado(true);
-                if (alu != null) {
-                    aluData.guardarAlumno(alu);
+            Alumno alu2 = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
+            if (alu2 == null) {
+                try {
+                    alu.setIdAlumno(1);
+                    alu.setDni(Integer.parseInt(textoDNI.getText()));
+                    alu.setApellido(textoApellido.getText());
+                    alu.setNombre(textoNombre.getText());
+                    LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    alu.setFechaNac(fecha);
+                    alu.setEstado(true);
+                    if (alu != null) {
+                        aluData.guardarAlumno(alu);
+                        vaciarDatos();
+                        JOptionPane.showMessageDialog(this, "Alumno Guardado");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al guardar");
+                    }
+                } catch (NumberFormatException | NullPointerException ex) {
+                    JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
                     vaciarDatos();
-                    JOptionPane.showMessageDialog(this, "Alumno Guardado");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al guardar");
                 }
-            } catch (NumberFormatException | NullPointerException ex) {
-                JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni");
                 vaciarDatos();
             }
         }
@@ -315,8 +321,13 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 textoNombre.setText(alu.getNombre());
                 jDateChooser2.setDate(Date.valueOf(alu.getFechaNac()));
                 radioButtonEstado.setSelected(alu.isEstado());
+                if (alu.isEstado()) {
+                    botonAlta.setEnabled(Boolean.FALSE);
+                } else {
+                    botonEliminar.setEnabled(Boolean.FALSE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontro al alumno con dni:\n "+textoDNI.getText());
+                JOptionPane.showMessageDialog(null, "No se encontro al alumno con dni:\n " + textoDNI.getText());
                 vaciarDatos();
             }
         } catch (NumberFormatException | NullPointerException ex) {
@@ -336,14 +347,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
-        botonBuscarDni.setEnabled(Boolean.TRUE);
-        botonEliminar.setEnabled(Boolean.TRUE);
-        botonAlta.setEnabled(Boolean.TRUE);
-        if (textoDNI.getText().isEmpty()) {
-            botonBuscarDni.setEnabled(Boolean.FALSE);
-            botonEliminar.setEnabled(Boolean.FALSE);
-            botonAlta.setEnabled(Boolean.FALSE);
-        }
+        activarBotonesBasicos();
     }//GEN-LAST:event_textoDNIKeyReleased
 
     private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
@@ -405,18 +409,32 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         textoNombre.setText("");
         jDateChooser2.setDate(null);
         radioButtonEstado.setSelected(false);
+        activarBotonesBasicos();
+        activarBoton();
     }
 
     public void activarBoton() {
-        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-zA-Z]*") 
+        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-zA-Z]*")
                 && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-zA-Z]*")
-                && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null 
+                && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null
                 && !textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
             botonModificar.setEnabled(Boolean.TRUE);
             botonNuevo.setEnabled(Boolean.TRUE);
         } else {
             botonModificar.setEnabled(Boolean.FALSE);
             botonNuevo.setEnabled(Boolean.FALSE);
+        }
+    }
+
+    public void activarBotonesBasicos() {
+        if (textoDNI.getText().isEmpty() || textoDNI.getText().matches("[a-zA-Z]*")) {
+            botonBuscarDni.setEnabled(Boolean.FALSE);
+            botonEliminar.setEnabled(Boolean.FALSE);
+            botonAlta.setEnabled(Boolean.FALSE);
+        } else {
+            botonBuscarDni.setEnabled(Boolean.TRUE);
+            botonEliminar.setEnabled(Boolean.TRUE);
+            botonAlta.setEnabled(Boolean.TRUE);
         }
     }
 }
