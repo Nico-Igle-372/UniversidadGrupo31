@@ -1,24 +1,17 @@
 package universidadgrupo31.interfaz;
 
-
-
 import java.awt.Image;
 import java.awt.Toolkit;
-
-
 import java.sql.Connection;
 import universidadgrupo31.accesoADatos.Conexion;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
+
     public VentanaPrincipal() {
         initComponents();
         conectar();
-
         setResizable(false);
-      setIconImage(getIconImage());
-        
-
+        setIconImage(getIconImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -151,7 +144,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         ActualizadorNotas cargaNotas = new ActualizadorNotas();
         cargaNotas.setVisible(true);
-        cargaNotas.setLocation((escritorio.getWidth()-cargaNotas.getWidth())/2, (escritorio.getHeight()-cargaNotas.getHeight())/2);
+        cargaNotas.setLocation((escritorio.getWidth() - cargaNotas.getWidth()) / 2, (escritorio.getHeight() - cargaNotas.getHeight()) / 2);
         escritorio.add(cargaNotas);
         escritorio.moveToFront(cargaNotas);
     }//GEN-LAST:event_menuNotasActionPerformed
@@ -162,7 +155,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         GestionAlumnos formuAlumnos = new GestionAlumnos();
         formuAlumnos.setVisible(true);
-        formuAlumnos.setLocation((escritorio.getWidth()-formuAlumnos.getWidth())/2, (escritorio.getHeight()-formuAlumnos.getHeight())/2);
+        formuAlumnos.setLocation((escritorio.getWidth() - formuAlumnos.getWidth()) / 2, (escritorio.getHeight() - formuAlumnos.getHeight()) / 2);
         escritorio.add(formuAlumnos);
         escritorio.moveToFront(formuAlumnos);
     }//GEN-LAST:event_menuFormularioAlumnoActionPerformed
@@ -173,7 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         GestionMateria formuMateria = new GestionMateria();
         formuMateria.setVisible(true);
-        formuMateria.setLocation((escritorio.getWidth()-formuMateria.getWidth())/2, (escritorio.getHeight()-formuMateria.getHeight())/2);
+        formuMateria.setLocation((escritorio.getWidth() - formuMateria.getWidth()) / 2, (escritorio.getHeight() - formuMateria.getHeight()) / 2);
         escritorio.add(formuMateria);
         escritorio.moveToFront(formuMateria);
     }//GEN-LAST:event_menuFormularioMateriaActionPerformed
@@ -184,7 +177,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.add(imagenFondo);
         GestionInscripcion formuInscripcion = new GestionInscripcion();
         formuInscripcion.setVisible(true);
-        formuInscripcion.setLocation((escritorio.getWidth()-formuInscripcion.getWidth())/2, (escritorio.getHeight()-formuInscripcion.getHeight())/2);
+        formuInscripcion.setLocation((escritorio.getWidth() - formuInscripcion.getWidth()) / 2, (escritorio.getHeight() - formuInscripcion.getHeight()) / 2);
         escritorio.add(formuInscripcion);
         escritorio.moveToFront(formuInscripcion);
     }//GEN-LAST:event_menuInscripcionesActionPerformed
@@ -193,46 +186,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
         escritorio.add(imagenFondo);
-        AlumnoPorMateria aluPorMate= new AlumnoPorMateria();
+        AlumnoPorMateria aluPorMate = new AlumnoPorMateria();
         aluPorMate.setVisible(true);
         aluPorMate.setClosable(true);
-         aluPorMate.setLocation((escritorio.getWidth()-aluPorMate.getWidth())/2, (escritorio.getHeight()-aluPorMate.getHeight())/2);
+        aluPorMate.setLocation((escritorio.getWidth() - aluPorMate.getWidth()) / 2, (escritorio.getHeight() - aluPorMate.getHeight()) / 2);
         escritorio.add(aluPorMate);
         escritorio.moveToFront(aluPorMate);
     }//GEN-LAST:event_menuAlumnosXMateriaActionPerformed
-
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VentanaPrincipal().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -249,16 +209,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuNotas;
     // End of variables declaration//GEN-END:variables
 
-    private void conectar(){
+    private void conectar() {
         Conexion conx = new Conexion("jdbc:mariadb://localhost:3306/", "universidadulp", "root", "");
         Connection conn = Conexion.getConexion();
     }
-    
+
     @Override
-    public Image getIconImage(){
-        
+    public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/iconoulp3.png"));
         return retValue;
     }
-    
 }
