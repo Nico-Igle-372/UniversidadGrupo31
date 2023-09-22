@@ -278,6 +278,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 }else{
                     botonEliminar.setEnabled(Boolean.FALSE);
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe la materia");
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No se puede dejar campos vacios");
