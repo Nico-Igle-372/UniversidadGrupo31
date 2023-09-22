@@ -265,7 +265,6 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarNombreActionPerformed
-
         Materia mat = new Materia();
         try {
             mat = matData.buscarMateriaXNombre(textoNombre.getText());
@@ -275,10 +274,10 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 botonesAvanzados();
                 if (mat.isEstado()) {
                     botonAlta.setEnabled(Boolean.FALSE);
-                }else{
+                } else {
                     botonEliminar.setEnabled(Boolean.FALSE);
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "No existe la materia");
             }
         } catch (NullPointerException e) {
@@ -332,16 +331,14 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void botonesAvanzados() {
         try {
-
-        if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || Integer.parseInt(textoYear.getText()) > 8
-                || Integer.parseInt(textoYear.getText()) < 1 || textoYear.getText().matches(".*[A-Z, a-z].*")) {
-            desactivaBotonesAvanzados();
-        }
-        if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && Integer.parseInt(textoYear.getText()) <= 8
-                && Integer.parseInt(textoYear.getText()) >= 1 && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
-            activaTodosBotones();
-        }
-                    
+            if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || Integer.parseInt(textoYear.getText()) > 8
+                    || Integer.parseInt(textoYear.getText()) < 1 || textoYear.getText().matches(".*[A-Z, a-z].*")) {
+                desactivaBotonesAvanzados();
+            }
+            if (!textoNombre.getText().isEmpty() && !textoYear.getText().isEmpty() && Integer.parseInt(textoYear.getText()) <= 8
+                    && Integer.parseInt(textoYear.getText()) >= 1 && !textoYear.getText().matches(".*[A-Z, a-z].*")) {
+                activaTodosBotones();
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Solo se pueden usar numeros naturales del 1 al 8");
             textoYear.setText("");

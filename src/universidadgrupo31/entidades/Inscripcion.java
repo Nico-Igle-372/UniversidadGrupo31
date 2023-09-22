@@ -1,9 +1,7 @@
-/*
-
-*/
 package universidadgrupo31.entidades;
+
 public class Inscripcion {
-    
+
     private int idInscripcion;
     private Alumno alumno;
     private Materia materia;
