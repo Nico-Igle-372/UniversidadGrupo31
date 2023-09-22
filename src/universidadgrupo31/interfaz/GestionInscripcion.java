@@ -218,7 +218,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         limpiarTabla(tamaño);
         botonAnularIns.setEnabled(Boolean.TRUE);
         botonInscribir.setEnabled(Boolean.FALSE);
-        
+
         if (rbMateriasIns.isSelected()) {
             Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
             List<Materia> lista = insData.obtenerMateriasCursadas(alu.getIdAlumno());
@@ -236,7 +236,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         limpiarTabla(tamaño);
         botonAnularIns.setEnabled(Boolean.FALSE);
         botonInscribir.setEnabled(Boolean.TRUE);
-        
+
         if (rbMateriasNoIns.isSelected()) {
             Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
             List<Materia> lista = insData.obtenerMateriasNoCursadas(alu.getIdAlumno());
@@ -254,16 +254,14 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
     private void botonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInscribirActionPerformed
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
-
         int idMate = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0);
         String nomb = (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 1);
         int anio = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 2);
 
         Materia mate = new Materia(idMate, nomb, anio, true);
-
         Inscripcion insc = new Inscripcion(alu, mate, 0);
         insData.guardarInscripcion(insc);
-        
+
         rbMateriasNoInsActionPerformed(evt);
     }//GEN-LAST:event_botonInscribirActionPerformed
 
@@ -271,9 +269,9 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
         int idAlu = alu.getIdAlumno();
         int idMate = (Integer) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0);
-        
+
         insData.borrarInscripcionMateriaAlumno(idAlu, idMate);
-        
+
         rbMateriasInsActionPerformed(evt);
     }//GEN-LAST:event_botonAnularInsActionPerformed
 
@@ -313,11 +311,9 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
     private void cargarCombo() {
         List<Alumno> lista = aluData.listarAlumnos();
-
         for (Iterator<Alumno> iterator = lista.iterator(); iterator.hasNext();) {
             Alumno alu = iterator.next();
             cbAlumnos.addItem(alu);
         }
     }
-
 }

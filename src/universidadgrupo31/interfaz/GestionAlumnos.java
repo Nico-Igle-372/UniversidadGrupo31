@@ -13,11 +13,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     public GestionAlumnos() {
         initComponents();
-        botonAlta.setEnabled(Boolean.FALSE);
-        botonBuscarDni.setEnabled(Boolean.FALSE);
-        botonEliminar.setEnabled(Boolean.FALSE);
-        botonModificar.setEnabled(Boolean.FALSE);
-        botonNuevo.setEnabled(Boolean.FALSE);
+        activarBotonAvanzado();
+        activarBotonesBasicos();
     }
 
     @SuppressWarnings("unchecked")
@@ -357,7 +354,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
         try {
-            activarBoton();
+            activarBotonAvanzado();
         } catch (NullPointerException ex) {
             System.out.println("campo de fecha vacio " + ex.getMessage());
         }
@@ -365,7 +362,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
         try {
-            activarBoton();
+            activarBotonAvanzado();
         } catch (NullPointerException ex) {
             System.out.println("campo de fecha vacio " + ex.getMessage());
         }
@@ -373,7 +370,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void jDateChooser2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser2PropertyChange
         try {
-            activarBoton();
+            activarBotonAvanzado();
         } catch (NullPointerException ex) {
             System.out.println("campo de fecha vacio " + ex.getMessage());
         }
@@ -381,7 +378,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void jDateChooser2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooser2FocusLost
         try {
-            activarBoton();
+            activarBotonAvanzado();
         } catch (NullPointerException ex) {
             System.out.println("campo de fecha vacio " + ex.getMessage());
         }
@@ -415,10 +412,10 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jDateChooser2.setDate(null);
         radioButtonEstado.setSelected(false);
         activarBotonesBasicos();
-        activarBoton();
+        activarBotonAvanzado();
     }
 
-    public void activarBoton() {
+    public void activarBotonAvanzado() {
         if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-zA-Z]*")
                 && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-zA-Z]*")
                 && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null

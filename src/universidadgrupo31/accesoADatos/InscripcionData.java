@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -24,13 +23,10 @@ public class InscripcionData {
     }
 
     public void guardarInscripcion(Inscripcion insc) {
-
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria)"
                 + "VALUES (?,?,?)";
         PreparedStatement ps = null;
-
         try {
-
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
@@ -42,7 +38,6 @@ public class InscripcionData {
                 JOptionPane.showMessageDialog(null, "Inscripto satisfactoriamente");
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en la inscripcion \n" + ex.getMessage());
         }
@@ -50,10 +45,8 @@ public class InscripcionData {
 
     public List<Inscripcion> obtenerInscripciones() {
         List<Inscripcion> inscripciones = new ArrayList<>();
-
         String sql = "SELECT * FROM inscripcion";
         PreparedStatement ps = null;
-
         try {
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -76,7 +69,6 @@ public class InscripcionData {
     }
 
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int id) {
-
         List<Inscripcion> inscripcionesPorAl = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion where idAlumno = ?";
         PreparedStatement ps = null;
@@ -160,7 +152,7 @@ public class InscripcionData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-            
+
             int registro = ps.executeUpdate();
             if (registro == 1) {
                 JOptionPane.showMessageDialog(null, "Desuscripto exitosamente");
