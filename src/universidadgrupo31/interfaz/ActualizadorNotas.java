@@ -1,11 +1,7 @@
 package universidadgrupo31.interfaz;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.util.Iterator;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -271,7 +267,7 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
             modeloTabla.removeRow(i);
         }
     }
-    
+
     private void notasOriginales() {
         Alumno alu = (Alumno) cbAlumnos.getSelectedItem();
         int idAlu = alu.getIdAlumno();
