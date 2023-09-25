@@ -63,13 +63,14 @@ public class MateriaData {
     }
 
     public void modificarMateria(Materia materia) {
-        String sql = "UPDATE `materia` SET `año`=?,`estado`=? WHERE nombre = ?";
+        String sql = "UPDATE `materia` SET nombre = ?, `año`=?,`estado`=? WHERE id = ?";
         PreparedStatement ps = null;
         try {
             ps = coneccion.prepareStatement(sql);
-            ps.setString(3, materia.getNombre());
-            ps.setInt(1, materia.getAnioMateria());
-            ps.setBoolean(2, materia.isEstado());
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnioMateria());
+            ps.setBoolean(3, materia.isEstado());
+            ps.setInt(4, materia.getIdMateria());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
