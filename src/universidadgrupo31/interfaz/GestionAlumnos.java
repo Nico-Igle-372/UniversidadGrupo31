@@ -366,11 +366,16 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                     if (alu.isEstado()) {
 
                         botonAlta.setEnabled(Boolean.FALSE);
+                        radioButtonEstado.setSelected(true);
 
                     } else {
                         botonEliminar.setEnabled(Boolean.FALSE);
+                        radioButtonEstado.setSelected(false);
 
                     }
+                }else { radioButtonEstado.setSelected(false);
+                 botonAlta.setEnabled(Boolean.FALSE);
+                 botonEliminar.setEnabled(Boolean.FALSE);
                 }
             }
             }catch(NullPointerException ex){
