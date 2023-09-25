@@ -257,30 +257,30 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             Alumno alu2 = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
             if (alu2 == null) {
                 try {
-                    
+
                     LocalDate fecha = jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    if(fecha.isBefore(LocalDate.of(LocalDate.now().getYear()-17,LocalDate.now().getMonth(),LocalDate.now().getDayOfMonth()))){
-                    alu.setIdAlumno(1);
-                    alu.setDni(Integer.parseInt(textoDNI.getText()));
-                    alu.setApellido(textoApellido.getText());
-                    alu.setNombre(textoNombre.getText());
-                    alu.setFechaNac(fecha);
-                    alu.setEstado(true);
-                    if (alu != null) {
-                        aluData.guardarAlumno(alu);
-                        vaciarDatos();
-                        JOptionPane.showMessageDialog(this, "Alumno Guardado");
+                    if (fecha.isBefore(LocalDate.of(LocalDate.now().getYear() - 17, LocalDate.now().getMonth(), LocalDate.now().getDayOfMonth()))) {
+                        alu.setIdAlumno(1);
+                        alu.setDni(Integer.parseInt(textoDNI.getText()));
+                        alu.setApellido(textoApellido.getText());
+                        alu.setNombre(textoNombre.getText());
+                        alu.setFechaNac(fecha);
+                        alu.setEstado(true);
+                        if (alu != null) {
+                            aluData.guardarAlumno(alu);
+                            vaciarDatos();
+                            JOptionPane.showMessageDialog(this, "Alumno Guardado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al guardar");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error al guardar");
-                    }
-                   }else{
                         JOptionPane.showMessageDialog(null, "Edad minima 17 años");
                     }
                 } catch (NumberFormatException | NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, "Un dato ingresado no valido");
                     vaciarDatos();
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Ya existe un alumno con ese dni");
                 vaciarDatos();
             }
@@ -356,7 +356,27 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
-        activarBotonesBasicos();
+
+        try {
+            if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
+
+                Alumno alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
+                if (alu != null) {
+                    activarBotonesBasicos();
+                    if (alu.isEstado()) {
+
+                        botonAlta.setEnabled(Boolean.FALSE);
+
+                    } else {
+                        botonEliminar.setEnabled(Boolean.FALSE);
+
+                    }
+                }
+            }
+            }catch(NullPointerException ex){
+                      
+        }
+        
     }//GEN-LAST:event_textoDNIKeyReleased
 
     private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
@@ -437,7 +457,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void activarBotonesBasicos() {
-        if (textoDNI.getText().isEmpty() || textoDNI.getText().matches("[a-zA-Z]*")||!textoDNI.getText().matches("[0-9]*")) {
+        if (textoDNI.getText().isEmpty() || textoDNI.getText().matches("[a-zA-Z]*") || !textoDNI.getText().matches("[0-9]*")) {
             botonBuscarDni.setEnabled(Boolean.FALSE);
             botonEliminar.setEnabled(Boolean.FALSE);
             botonAlta.setEnabled(Boolean.FALSE);
