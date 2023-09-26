@@ -398,7 +398,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_jDateChooser2PropertyChange
 
@@ -406,7 +405,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_jDateChooser2FocusLost
 
