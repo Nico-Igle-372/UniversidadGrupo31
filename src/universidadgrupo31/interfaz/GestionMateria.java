@@ -244,7 +244,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
         if (!textoNombre.getText().isEmpty()) {
             try {
-                mat.setIdMateria(1);
+                mat.setIdMateria(Integer.parseInt(jTID.getText()));
                 mat.setNombre(textoNombre.getText());
                 mat.setAnioMateria(Integer.parseInt(textoYear.getText()));
                 mat.setEstado(true);
@@ -314,6 +314,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
         botonesAvanzados();
         botonesBasicos();
+        botonNombre();
     }//GEN-LAST:event_textoNombreKeyReleased
 
     private void textoYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoYearKeyReleased
@@ -355,6 +356,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         radioButtonEstado.setSelected(false);
         desactivaBotonesBasicos();
         desactivaBotonesAvanzados();
+        botonNombre();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAlta;
@@ -432,7 +434,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }
 
     private void botonNombre() {
-        if (textoNombre.getText().isEmpty()) {
+        if (textoNombre.getText().isEmpty()|| !textoNombre.getText().matches("[A-Z , a-z].*") ) {
             botonBuscarNombre.setEnabled(Boolean.FALSE);
         } else {
             botonBuscarNombre.setEnabled(Boolean.TRUE);
