@@ -356,27 +356,32 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
+
         try {
             if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
+
                 Alumno alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
                 if (alu != null) {
                     activarBotonesBasicos();
                     if (alu.isEstado()) {
-                        radioButtonEstado.setSelected(true);
+
                         botonAlta.setEnabled(Boolean.FALSE);
+                        radioButtonEstado.setSelected(true);
+
                     } else {
-                        radioButtonEstado.setSelected(false);
                         botonEliminar.setEnabled(Boolean.FALSE);
+                        radioButtonEstado.setSelected(false);
+
                     }
-                } else {
-                    radioButtonEstado.setSelected(false);
-                    botonAlta.setEnabled(Boolean.FALSE);
-                    botonEliminar.setEnabled(Boolean.FALSE);
+                }else { radioButtonEstado.setSelected(false);
+                 botonAlta.setEnabled(Boolean.FALSE);
+                 botonEliminar.setEnabled(Boolean.FALSE);
                 }
             }
-        } catch (NullPointerException ex) {
+            }catch(NullPointerException ex){
+                      
         }
-
+        
     }//GEN-LAST:event_textoDNIKeyReleased
 
     private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
