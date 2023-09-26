@@ -373,6 +373,10 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                     botonAlta.setEnabled(Boolean.FALSE);
                     botonEliminar.setEnabled(Boolean.FALSE);
                 }
+            } else {
+                radioButtonEstado.setSelected(false);
+                botonAlta.setEnabled(Boolean.FALSE);
+                botonEliminar.setEnabled(Boolean.FALSE);
             }
         } catch (NullPointerException ex) {
         }
