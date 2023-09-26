@@ -298,6 +298,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 radioButtonEstado.setSelected(mat.isEstado());
                 textoNombre.setText(mat.getNombre());
                 botonesAvanzados();
+                botonNombre();
                 if (mat.isEstado()) {
                     botonAlta.setEnabled(Boolean.FALSE);
                 } else {
@@ -435,7 +436,6 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void botonNombre() {
         if (textoNombre.getText().isEmpty() || textoNombre.getText().matches("[A-Z, a-z].*")) {
-
             botonBuscarNombre.setEnabled(Boolean.FALSE);
         } else {
             botonBuscarNombre.setEnabled(Boolean.TRUE);
