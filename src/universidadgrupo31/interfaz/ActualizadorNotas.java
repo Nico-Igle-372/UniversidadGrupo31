@@ -42,7 +42,7 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         cbAlumnos = new javax.swing.JComboBox<>();
         botonGuardar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonAyuda = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -88,12 +88,15 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 255));
-        jButton1.setForeground(new java.awt.Color(204, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono.pregunta-negro-chico.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAyuda.setBackground(new java.awt.Color(204, 255, 255));
+        botonAyuda.setForeground(new java.awt.Color(204, 255, 255));
+        botonAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono.pregunta-negro-chico.png"))); // NOI18N
+        botonAyuda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        botonAyuda.setBorderPainted(false);
+        botonAyuda.setContentAreaFilled(false);
+        botonAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonAyudaActionPerformed(evt);
             }
         });
 
@@ -127,7 +130,7 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,7 +139,7 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -221,19 +224,19 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAyudaActionPerformed
         JLabel label = new JLabel("<html><center>Para modificar una nota haga doble click en dicha nota<br>"
                 + "Ingrese su nuevo valor y presione la tecla Enter para confirmar<br>"
                 + "Y una vez modificadas todas las notas requeridas,<br>haga click en el boton Guardar");
         label.setHorizontalAlignment(SwingConstants.CENTER);
         JOptionPane.showMessageDialog(null, label, "Ayuda", JOptionPane.QUESTION_MESSAGE);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonAyudaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAyuda;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<Alumno> cbAlumnos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
