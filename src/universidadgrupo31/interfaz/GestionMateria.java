@@ -433,7 +433,6 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         botonBuscarID.setEnabled(Boolean.FALSE);
         botonAlta.setEnabled(Boolean.FALSE);
         botonEliminar.setEnabled(Boolean.FALSE);
-
     }
 
     private void botonNombre() {
