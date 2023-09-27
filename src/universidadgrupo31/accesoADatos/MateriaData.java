@@ -53,7 +53,7 @@ public class MateriaData {
                 mat.setAnioMateria(rs.getInt("año"));
                 mat.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No existe la materia");
+                
                 ps.close();
             }
         } catch (SQLException ex) {
