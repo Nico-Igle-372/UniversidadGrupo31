@@ -13,8 +13,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     public GestionAlumnos() {
         initComponents();
-        activarBotonAvanzado();
         activarBotonesBasicos();
+        activarBotonAvanzado();
     }
 
     @SuppressWarnings("unchecked")
@@ -357,10 +357,11 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
         try {
-            if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")&&textoDNI.getText().length()<10) {
+            activarBotonesBasicos();
+            activarBotonAvanzado();
+            if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*") && textoDNI.getText().length() < 10) {
                 Alumno alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
                 if (alu != null) {
-                    activarBotonesBasicos();
                     if (alu.isEstado()) {
                         botonAlta.setEnabled(Boolean.FALSE);
                         radioButtonEstado.setSelected(true);
@@ -373,10 +374,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                     botonAlta.setEnabled(Boolean.FALSE);
                     botonEliminar.setEnabled(Boolean.FALSE);
                 }
-            } else {radioButtonEstado.setSelected(false);
-                    botonAlta.setEnabled(Boolean.FALSE);
-                    botonEliminar.setEnabled(Boolean.FALSE);
-                    botonBuscarDni.setEnabled(Boolean.FALSE);}
+            } else {
+                radioButtonEstado.setSelected(false);
+                botonAlta.setEnabled(Boolean.FALSE);
+                botonEliminar.setEnabled(Boolean.FALSE);
+                botonBuscarDni.setEnabled(Boolean.FALSE);
+            }
         } catch (NullPointerException ex) {
         }
     }//GEN-LAST:event_textoDNIKeyReleased
@@ -442,8 +445,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void activarBotonAvanzado() {
-        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-zA-Z]*")
-                && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-zA-Z]*")
+        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-z A-Z]*")
+                && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-z A-Z]*")
                 && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null
                 && !textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
             botonModificar.setEnabled(Boolean.TRUE);
@@ -451,7 +454,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         } else {
             botonModificar.setEnabled(Boolean.FALSE);
             botonNuevo.setEnabled(Boolean.FALSE);
-        }
+        }        //
     }
 
     public void activarBotonesBasicos() {

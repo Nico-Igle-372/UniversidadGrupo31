@@ -314,21 +314,21 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void textoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyReleased
         botonesBasicos();
-        botonesAvanzados();       
+        botonesAvanzados();
         botonNombre();
     }//GEN-LAST:event_textoNombreKeyReleased
 
     private void textoYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoYearKeyReleased
         botonesBasicos();
         botonesAvanzados();
-       
+
     }//GEN-LAST:event_textoYearKeyReleased
 
     private void jTIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIDKeyReleased
         botonesBasicos();
         botonesAvanzados();
-        
-        
+
+
     }//GEN-LAST:event_jTIDKeyReleased
 
     private void botonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarNombreActionPerformed
@@ -395,14 +395,10 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void botonesAvanzados() {
         try {
             if (textoNombre.getText().isEmpty() || textoYear.getText().isEmpty() || Integer.parseInt(textoYear.getText()) > 8
-                    
-                    || Integer.parseInt(textoYear.getText()) < 1 || textoYear.getText().matches(".*[A-Z, a-z].*")
-                    ) {
+                    || Integer.parseInt(textoYear.getText()) < 1 || textoYear.getText().matches(".*[A-Z, a-z].*")) {
                 desactivaBotonesAvanzados();
                 botonNombre();
-
-            } else if ( jTID.getText().isEmpty()){
-                
+            } else if (jTID.getText().isEmpty()) {
                 desactivaBotonesAvanzados();
                 desactivaBotonesBasicos();
                 botonNuevo.setEnabled(Boolean.TRUE);
@@ -411,7 +407,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 activaTodosBotones();
                 botonNuevo.setEnabled(Boolean.FALSE);
             }
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Solo se pueden usar numeros naturales del 1 al 8");
             textoYear.setText("");
