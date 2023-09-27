@@ -13,8 +13,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     public GestionAlumnos() {
         initComponents();
-        activarBotonAvanzado();
         activarBotonesBasicos();
+        activarBotonAvanzado();
     }
 
     @SuppressWarnings("unchecked")
@@ -356,39 +356,38 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonAltaActionPerformed
 
     private void textoDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDNIKeyReleased
-
         try {
-            if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
-
+            activarBotonesBasicos();
+            activarBotonAvanzado();
+            if (!textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*") && textoDNI.getText().length() < 10) {
                 Alumno alu = aluData.buscarAlumnoPorDni(Integer.parseInt(textoDNI.getText()));
                 if (alu != null) {
-                    activarBotonesBasicos();
                     if (alu.isEstado()) {
-
                         botonAlta.setEnabled(Boolean.FALSE);
                         radioButtonEstado.setSelected(true);
-
                     } else {
                         botonEliminar.setEnabled(Boolean.FALSE);
                         radioButtonEstado.setSelected(false);
-
                     }
-                }else { radioButtonEstado.setSelected(false);
-                 botonAlta.setEnabled(Boolean.FALSE);
-                 botonEliminar.setEnabled(Boolean.FALSE);
+                } else {
+                    radioButtonEstado.setSelected(false);
+                    botonAlta.setEnabled(Boolean.FALSE);
+                    botonEliminar.setEnabled(Boolean.FALSE);
                 }
+            } else {
+                radioButtonEstado.setSelected(false);
+                botonAlta.setEnabled(Boolean.FALSE);
+                botonEliminar.setEnabled(Boolean.FALSE);
+                botonBuscarDni.setEnabled(Boolean.FALSE);
             }
-            }catch(NullPointerException ex){
-                      
+        } catch (NullPointerException ex) {
         }
-        
     }//GEN-LAST:event_textoDNIKeyReleased
 
     private void textoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoApellidoKeyReleased
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_textoApellidoKeyReleased
 
@@ -396,7 +395,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_textoNombreKeyReleased
 
@@ -404,7 +402,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_jDateChooser2PropertyChange
 
@@ -412,7 +409,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         try {
             activarBotonAvanzado();
         } catch (NullPointerException ex) {
-            System.out.println("campo de fecha vacio " + ex.getMessage());
         }
     }//GEN-LAST:event_jDateChooser2FocusLost
 
@@ -449,8 +445,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }
 
     public void activarBotonAvanzado() {
-        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-zA-Z]*")
-                && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-zA-Z]*")
+        if (!textoApellido.getText().isEmpty() && textoApellido.getText().matches("[a-z A-Z]*")
+                && !textoNombre.getText().isEmpty() && textoNombre.getText().matches("[a-z A-Z]*")
                 && jDateChooser2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() != null
                 && !textoDNI.getText().isEmpty() && textoDNI.getText().matches("[0-9]*")) {
             botonModificar.setEnabled(Boolean.TRUE);
@@ -458,7 +454,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         } else {
             botonModificar.setEnabled(Boolean.FALSE);
             botonNuevo.setEnabled(Boolean.FALSE);
-        }
+        }        //
     }
 
     public void activarBotonesBasicos() {
