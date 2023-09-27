@@ -326,6 +326,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void jTIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIDKeyReleased
         botonesBasicos();
         botonesAvanzados();
+        
     }//GEN-LAST:event_jTIDKeyReleased
 
     private void botonBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarNombreActionPerformed
@@ -436,7 +437,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }
 
     private void botonNombre() {
-        if (textoNombre.getText().isEmpty() || textoNombre.getText().matches("[A-Z, a-z].*")) {
+        if (textoNombre.getText().isEmpty() || !textoNombre.getText().matches("[A-Z, a-z].*")) {
             botonBuscarNombre.setEnabled(Boolean.FALSE);
         } else {
             botonBuscarNombre.setEnabled(Boolean.TRUE);
