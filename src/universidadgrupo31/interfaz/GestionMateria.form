@@ -69,8 +69,8 @@
                               <Component id="textoYear" min="-2" pref="246" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTID" alignment="1" min="-2" pref="246" max="-2" attributes="0"/>
-                                      <Component id="textoNombre" alignment="1" min="-2" pref="246" max="-2" attributes="0"/>
+                                      <Component id="jTID" min="-2" pref="246" max="-2" attributes="0"/>
+                                      <Component id="textoNombre" alignment="0" min="-2" pref="246" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -108,14 +108,14 @@
                       <Component id="jTID" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="botonBuscarID" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="48" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="textoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="textoYear" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
