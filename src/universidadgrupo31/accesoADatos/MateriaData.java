@@ -79,7 +79,7 @@ public class MateriaData {
                 JOptionPane.showMessageDialog(null, "La materia no existe");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ya existe una materia con ese nombre");
         }
     }
 

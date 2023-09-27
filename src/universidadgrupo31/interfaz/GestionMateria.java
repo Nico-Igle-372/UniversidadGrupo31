@@ -241,8 +241,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         Materia mat = new Materia();
-
-        if (!textoNombre.getText().isEmpty()) {
+        Materia mat2 = matData.buscarMateriaXNombre(textoNombre.getText());
+        if ( mat2 == null ) {
             try {
                 mat.setIdMateria(Integer.parseInt(jTID.getText()));
                 mat.setNombre(textoNombre.getText());
@@ -254,7 +254,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Se requiere un numero valido para el campo Año de Materia");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No pueden haber campos vacios");
+            JOptionPane.showMessageDialog(null, "Ya existe una materia con ese nombre");
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
@@ -436,7 +436,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     }
 
     private void botonNombre() {
-        if (textoNombre.getText().isEmpty() || textoNombre.getText().matches("[A-Z, a-z].*")) {
+        if (textoNombre.getText().isEmpty() || !textoNombre.getText().matches("[A-Z, a-z].*")) {
             botonBuscarNombre.setEnabled(Boolean.FALSE);
         } else {
             botonBuscarNombre.setEnabled(Boolean.TRUE);
