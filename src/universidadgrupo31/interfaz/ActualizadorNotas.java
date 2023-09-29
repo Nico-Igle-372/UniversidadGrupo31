@@ -2,6 +2,7 @@ package universidadgrupo31.interfaz;
 
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -27,6 +28,8 @@ public class ActualizadorNotas extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarCombo();
+        this.setFrameIcon(new ImageIcon(this.getClass().getResource("")));
+
     }
 
     @SuppressWarnings("unchecked")

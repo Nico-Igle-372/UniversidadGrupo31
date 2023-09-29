@@ -3,6 +3,7 @@ package universidadgrupo31.interfaz;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.entidades.Alumno;
@@ -15,6 +16,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         initComponents();
         activarBotonesBasicos();
         activarBotonAvanzado();
+        this.setFrameIcon(new ImageIcon(this.getClass().getResource("")));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -176,7 +179,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7))
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(radioButtonEstado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

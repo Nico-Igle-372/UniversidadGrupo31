@@ -2,6 +2,7 @@ package universidadgrupo31.interfaz;
 
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo31.accesoADatos.AlumnoData;
 import universidadgrupo31.accesoADatos.InscripcionData;
@@ -26,6 +27,8 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarCombo();
+        this.setFrameIcon(new ImageIcon(this.getClass().getResource("")));
+
         botonInscribir.setEnabled(Boolean.FALSE);
         botonAnularIns.setEnabled(Boolean.FALSE);
     }

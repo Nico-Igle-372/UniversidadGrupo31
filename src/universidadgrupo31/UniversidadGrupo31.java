@@ -1,20 +1,23 @@
 package universidadgrupo31;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
+//import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
+//import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
+//import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMoonlightIJTheme;
+import javax.swing.JOptionPane;
+//import javax.swing.UIManager;
 import universidadgrupo31.interfaz.VentanaPrincipal;
 
 public class UniversidadGrupo31 {
 
     public static void main(String[] args) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//    UIManager.setLookAndFeel( new FlatLightLaf() );
+            FlatArcIJTheme.setup();
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Falló al iniciar FlatLaf");
         }
         VentanaPrincipal ventana = new VentanaPrincipal();
         ventana.setVisible(true);
